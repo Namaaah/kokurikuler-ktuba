@@ -436,16 +436,11 @@ svg {
 }
 
 .brand-mark {
-  display: grid;
+  display: block;
   width: 28px;
   height: 28px;
-  place-items: center;
   border-radius: 3px;
-  background: var(--vermillion);
-  color: var(--paper);
-  font-size: 1rem;
-  font-weight: 800;
-  line-height: 1;
+  object-fit: cover;
 }
 
 .brand-word {
@@ -2324,10 +2319,6 @@ body.hdr-hidden .faq-head {
 
 .foot .brand {
   color: var(--paper);
-}
-
-.foot .brand-mark {
-  background: var(--vermillion);
 }
 
 .foot-brand p {
