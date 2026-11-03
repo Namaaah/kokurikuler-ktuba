@@ -12,6 +12,7 @@
   const qs = (s, c = document) => c.querySelector(s);
   const qsa = (s, c = document) => Array.from(c.querySelectorAll(s));
   const rp = (n) => "Rp " + Math.round(n || 0).toLocaleString("id-ID");
+  const HEX = /^#[0-9a-f]{6}$/i;
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const D = () => (typeof PRODUK !== "undefined" ? PRODUK : []);
@@ -76,6 +77,7 @@
     const out = [];
     const w = W()[toneKey];
     if (w) out.push(w.nama);
+    else if (HEX.test(toneKey || "")) out.push("Custom " + toneKey.toUpperCase());
     if (ukuran) out.push("Ukuran " + ukuran);
     (p.opsi || []).forEach((g, i) => {
       const j = opsiIdx[i] === undefined ? 0 : opsiIdx[i];
@@ -125,9 +127,55 @@
     return `<div class="mock" style="--tone:${tone};--print:${print}"><div class="scene"><div class="obj obj--${mockId}">${inner}</div></div></div>`;
   }
 
+  /* Warna bisa berupa kunci di WARNA atau kode hex langsung (warna custom). */
+
+  /* Warna tinta cetak yang tetap terbaca di atas warna apa pun:
+     latar terang → vermillion, latar gelap → kertas. */
+  function cetakDi(hex) {
+    const n = parseInt(hex.slice(1), 16);
+    const r = (n >> 16) & 255;
+    const g = (n >> 8) & 255;
+    const b = n & 255;
+    const luma = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+    return luma > 0.56 ? "#FF4A1C" : "#FBF8F2";
+  }
+
   function toneOf(key) {
-    const w = W()[key] || W().putih || { hex: "#FCFBF7", print: "#FF4A1C" };
-    return { tone: w.hex, print: w.print };
+    const w = W()[key];
+    if (w) return { tone: w.hex, print: w.print };
+    if (HEX.test(key || "")) return { tone: key, print: cetakDi(key) };
+    const d = W().putih || { hex: "#FCFBF7", print: "#FF4A1C" };
+    return { tone: d.hex, print: d.print };
+  }
+
+  /* Swatch preset + tombol custom. Dipakai drawer produk & konfigurator. */
+  function swatchMarkup(keys, aktif) {
+    const custom = HEX.test(aktif || "");
+    const preset = keys
+      .filter((k) => W()[k])
+      .map(
+        (k) =>
+          `<button type="button" class="swatch${k === aktif ? " is-active" : ""}" style="--sw:${W()[k].hex}" data-tone="${k}" aria-label="Warna ${W()[k].nama}" title="${W()[k].nama}"></button>`
+      )
+      .join("");
+
+    const nilai = W()[aktif] ? W()[aktif].hex : custom ? aktif : "#4A7AB8";
+    const labelCustom = custom
+      ? "Ubah warna custom " + aktif.toUpperCase()
+      : "Pilih warna sendiri";
+
+    return (
+      preset +
+      `<span class="swatch-custom-wrap"><button type="button" class="swatch swatch--custom${custom ? " is-active" : ""}" style="--sw:${custom ? aktif : "#FF4A1C"}" data-custom-color aria-label="${labelCustom}" title="${labelCustom}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.25a8.75 8.75 0 1 0 0 17.5h1.12a2.1 2.1 0 0 0 1.46-3.61 1.1 1.1 0 0 1 .78-1.89h1.16A4.23 4.23 0 0 0 20.75 11C20.75 6.72 16.83 3.25 12 3.25Z"></path><circle cx="7.5" cy="11" r="1" fill="#FF4A1C" stroke="none"></circle><circle cx="10.5" cy="7.5" r="1" fill="#D8F26A" stroke="none"></circle><circle cx="15" cy="7.8" r="1" fill="#6B6560" stroke="none"></circle><circle cx="16.5" cy="12" r="1" fill="#E2DCCF" stroke="none"></circle><circle cx="14.6" cy="16.1" r="1.25" fill="var(--sw)" stroke="none"></circle></svg></button><input class="swatch-custom-input" type="color" value="${nilai}" tabindex="-1" aria-hidden="true"></span>`
+    );
+  }
+
+  function openCustomColorPicker(button) {
+    const input = button.nextElementSibling;
+    if (!(input instanceof HTMLInputElement) || input.type !== "color") {
+      throw new Error("Input warna custom tidak ditemukan.");
+    }
+    input.click();
   }
 
   /* ══════════════════════ 4. HEADER & KONTAK ══════════════════════ */
@@ -135,12 +183,50 @@
   const burger = qs("#burger");
   const mobileNav = qs("#mobileNav");
 
+  /* Sembunyi saat menurun, muncul saat menaik. Ambang 8px mencegah
+     header berkedip karena scroll inersia di layar sentuh. */
+  let lastY = window.scrollY;
+  let bebasSampai = 0; // jendela tenang setelah lompat ke anchor
+
+  function setHidden(on) {
+    hdr.classList.toggle("is-hidden", on);
+    document.body.classList.toggle("hdr-hidden", on);
+  }
+
   function onScroll() {
     if (!hdr) return;
-    hdr.classList.toggle("is-stuck", window.scrollY > 16);
+    const y = window.scrollY;
+    const delta = y - lastY;
+
+    hdr.classList.toggle("is-stuck", y > 16);
+
+    if (Date.now() < bebasSampai) {
+      lastY = y;
+      return;
+    }
+
+    if (delta > 8 && y > 140) setHidden(true);
+    else if (delta < -8 || y <= 140) setHidden(false);
+
+    lastY = y;
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  // lompat ke bagian lewat menu: header tidak ikut menyelinap saat meluncur
+  qsa('a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", () => {
+      bebasSampai = Date.now() + 800;
+      if (hdr) setHidden(false);
+    });
+  });
+
+  // keyboard: kalau fokus masuk ke header, header wajib kelihatan
+  if (hdr)
+    hdr.addEventListener("focusin", () => {
+      bebasSampai = Date.now() + 400;
+      setHidden(false);
+    });
 
   function closeMobileNav() {
     if (!burger || !mobileNav) return;
@@ -504,19 +590,31 @@
     drawerEls.qtyInput.value = st.qty;
 
     // warna
-    drawerEls.warna.innerHTML = (p.warna || [])
-      .filter((k) => W()[k])
-      .map(
-        (k, i) =>
-          `<button type="button" class="swatch${i === 0 ? " is-active" : ""}" style="--sw:${W()[k].hex}" data-tone="${k}" title="${W()[k].nama}" aria-label="Warna ${W()[k].nama}"></button>`
-      )
-      .join("");
+    drawerEls.warna.innerHTML = swatchMarkup(p.warna || [], st.toneKey);
 
     drawerEls.warna.onclick = (e) => {
       const b = e.target.closest("[data-tone]");
-      if (!b) return;
-      st.toneKey = b.dataset.tone;
-      qsa(".swatch", drawerEls.warna).forEach((x) => x.classList.toggle("is-active", x === b));
+      if (b) {
+        st.toneKey = b.dataset.tone;
+        drawerEls.warna.innerHTML = swatchMarkup(p.warna || [], st.toneKey);
+        paintDrawer();
+        return;
+      }
+
+      const customButton = e.target.closest("[data-custom-color]");
+      if (customButton) openCustomColorPicker(customButton);
+    };
+
+    // warna custom — input berjalan selama pemilih warna digeser
+    drawerEls.warna.oninput = (e) => {
+      const inp = e.target.closest('input[type="color"]');
+      if (!inp) return;
+      const button = inp.previousElementSibling;
+      st.toneKey = inp.value;
+      button.style.setProperty("--sw", inp.value);
+      button.title = "Ubah warna custom " + inp.value.toUpperCase();
+      button.setAttribute("aria-label", button.title);
+      qsa(".swatch", drawerEls.warna).forEach((x) => x.classList.toggle("is-active", x === button));
       paintDrawer();
     };
 
@@ -657,13 +755,7 @@
     }
 
     function paintWarna() {
-      els.warna.innerHTML = (kst.p.warna || [])
-        .filter((k) => W()[k])
-        .map(
-          (k) =>
-            `<button type="button" class="swatch${k === kst.toneKey ? " is-active" : ""}" style="--sw:${W()[k].hex}" data-tone="${k}" aria-label="Warna ${W()[k].nama}" title="${W()[k].nama}"></button>`
-        )
-        .join("");
+      els.warna.innerHTML = swatchMarkup(kst.p.warna || [], kst.toneKey);
     }
 
     function paintOpsi() {
@@ -721,9 +813,27 @@
 
     els.warna.addEventListener("click", (e) => {
       const b = e.target.closest("[data-tone]");
-      if (!b) return;
-      kst.toneKey = b.dataset.tone;
-      qsa(".swatch", els.warna).forEach((x) => x.classList.toggle("is-active", x === b));
+      if (b) {
+        kst.toneKey = b.dataset.tone;
+        paintWarna();
+        paint();
+        return;
+      }
+
+      const customButton = e.target.closest("[data-custom-color]");
+      if (customButton) openCustomColorPicker(customButton);
+    });
+
+    // warna custom — input berjalan selama pemilih warna digeser
+    els.warna.addEventListener("input", (e) => {
+      const inp = e.target.closest('input[type="color"]');
+      if (!inp) return;
+      const button = inp.previousElementSibling;
+      kst.toneKey = inp.value;
+      button.style.setProperty("--sw", inp.value);
+      button.title = "Ubah warna custom " + inp.value.toUpperCase();
+      button.setAttribute("aria-label", button.title);
+      qsa(".swatch", els.warna).forEach((x) => x.classList.toggle("is-active", x === button));
       paint();
     });
 
@@ -774,15 +884,16 @@
   if (galeriGrid && typeof GALERI !== "undefined") {
     galeriGrid.innerHTML = GALERI.map((g, i) => {
       const p = D().find((x) => x.id === g.produk);
-      if (!p) return "";
-      const t = toneOf(g.warna || (p.warna && p.warna[0]) || "putih");
+      if (!g.gambar && !p) return "";
+      const t = p ? toneOf(g.warna || (p.warna && p.warna[0]) || "putih") : null;
       return `
         <figure class="g-cell reveal" style="--d:${i * 45}ms">
           <div class="media">
-            ${mockMarkup(p.mock, t.tone, t.print)}
-            <!-- FOTO HASIL: ganti .mock di atas dengan
-            <img src="assets/produk/hasil-${i + 1}.jpg" alt="${g.label}">
-            -->
+            ${
+              g.gambar
+                ? `<img src="assets/produk/${g.gambar}" alt="${g.label}" loading="lazy" decoding="async">`
+                : mockMarkup(p.mock, t.tone, t.print)
+            }
           </div>
           <figcaption>${g.label}</figcaption>
         </figure>`;

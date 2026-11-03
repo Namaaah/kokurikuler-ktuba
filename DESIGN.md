@@ -36,7 +36,8 @@ Semua ilustrasi dibuat dengan CSS (`container-type: inline-size`, satuan `cqw`),
 Setiap `.media` menyimpan `<figure>` berisi `.mock` dan komentar `<img>` siap pakai.
 Begitu `<img>` dimasukkan, `.media:has(img) .mock` otomatis menyembunyikan ilustrasi — tanpa mengubah CSS.
 
-Foto asli diletakkan di `assets/produk/` dengan nama sesuai `id` produk, misalnya `mug.jpg`.
+Foto hasil produksi diletakkan di `assets/produk/` dan dipetakan lewat properti `gambar`
+di setiap entri `GALERI` pada `produk.js`. Kartu katalog tetap memakai ilustrasi CSS.
 
 ## Gerak
 - Reveal saat masuk viewport (IntersectionObserver), sekali jalan.
@@ -46,6 +47,17 @@ Foto asli diletakkan di `assets/produk/` dengan nama sesuai `id` produk, misalny
 - Tombol magnetik 5px.
 - Semua gerak dimatikan di bawah `prefers-reduced-motion: reduce`.
 
+## Header
+- Melayang di atas isi: `rgba(251, 248, 242, 0.68)` dengan `backdrop-filter: blur(18px)`.
+  Saat digulir jadi `0.8` dan tingginya menyusut 70px → 58px. Tanpa dukungan blur,
+  latar dinaikkan ke `0.94` supaya teks tetap terbaca (`@supports not`).
+- Menurun → header bergeser ke atas dan hilang. Menaik → kembali. Ambang 8px mencegah
+  kedip karena inersia gulir di layar sentuh; di bawah 140px header selalu tampil.
+- Klik tautan menu memberi jendela tenang 800ms agar header tidak menyelinap saat
+  halaman meluncur ke bagian tujuan.
+- Saat header hilang, `body.hdr-hidden` menarik judul sticky di FAQ naik mengisi ruang kosong.
+- Fokus keyboard ke dalam header selalu memunculkannya kembali.
+
 ## Teknis
 - Vanilla HTML/CSS/JS, tanpa build step, tanpa CDN. Berjalan lewat `file://`.
 - Font diunduh lokal di `assets/fonts/`.
@@ -54,6 +66,11 @@ Foto asli diletakkan di `assets/produk/` dengan nama sesuai `id` produk, misalny
   di drawer produk dan di konfigurator menyusun satu pesan berisi nama produk,
   jumlah, spesifikasi, dan estimasi harga — lalu membuka `wa.me`.
 - Tidak ada state yang disimpan di browser; tidak ada checkout bertahap.
+- Warna produk: preset dari `WARNA` di `produk.js` ditambah satu swatch custom yang membuka
+  pemilih warna bawaan sistem (tanpa pustaka warna). Drawer dan konfigurator memakai
+  `swatchMarkup()` yang sama supaya tidak pernah berbeda. Warna custom disimpan sebagai
+  hex langsung di `toneKey`; `cetakDi()` memilih tinta yang tetap terbaca di atasnya
+  (latar terang → vermillion, latar gelap → kertas).
 
 ## Yang perlu diganti sebelum tayang
 1. `KONTAK.wa` di `produk.js` — nomor WhatsApp asli, hanya angka.

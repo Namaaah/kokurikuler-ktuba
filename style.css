@@ -397,17 +397,34 @@ svg {
   gap: 1.5rem;
   height: var(--hdr);
   padding: 0 var(--pad);
-  background: rgba(251, 248, 242, 0.82);
-  backdrop-filter: blur(14px) saturate(140%);
+  background: rgba(251, 248, 242, 0.68);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
   border-bottom: 1px solid transparent;
   transition: height 0.25s var(--ease), border-color 0.25s var(--ease),
-    background-color 0.25s var(--ease);
+    background-color 0.25s var(--ease), transform 0.34s var(--ease);
 }
 
 .hdr.is-stuck {
   height: 58px;
   border-bottom-color: var(--line);
-  background: rgba(251, 248, 242, 0.94);
+  background: rgba(251, 248, 242, 0.8);
+}
+
+/* geser ke bawah: header pergi. geser ke atas: kembali. */
+.hdr.is-hidden {
+  transform: translateY(-101%);
+}
+
+/* tanpa blur, latar transparan bikin teks tabrak isi halaman */
+@supports not ((backdrop-filter: blur(6px)) or (-webkit-backdrop-filter: blur(6px))) {
+  .hdr {
+    background: rgba(251, 248, 242, 0.94);
+  }
+
+  .hdr.is-stuck {
+    background: rgba(251, 248, 242, 0.97);
+  }
 }
 
 .brand {
@@ -1590,6 +1607,64 @@ svg {
   border-color: var(--ink);
 }
 
+/* Tombol berikon palet membuka pemilih warna bawaan sistem. */
+.swatch-custom-wrap {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+}
+
+.swatch--custom {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-color: var(--line);
+  background: var(--paper-2);
+  color: var(--ink);
+  cursor: pointer;
+  isolation: isolate;
+}
+
+.swatch--custom svg {
+  width: 23px;
+  height: 23px;
+}
+
+.swatch-custom-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+  clip-path: inset(50%);
+}
+
+.swatch--custom.is-active::after {
+  border-color: var(--ink);
+}
+
+.konfig .swatch--custom.is-active::after {
+  border-color: var(--paper);
+}
+
+.field--dark .swatch--custom.is-active::after {
+  border-color: var(--ink);
+}
+
+.konfig .swatch--custom:focus-visible {
+  outline-color: var(--lime);
+}
+
+.field--dark .swatch--custom:focus-visible {
+  outline-color: var(--ink);
+}
+
 .stepper {
   display: inline-flex;
   align-items: center;
@@ -2085,6 +2160,12 @@ svg {
   position: sticky;
   top: calc(var(--hdr) + 2rem);
   align-self: start;
+  transition: top 0.3s var(--ease);
+}
+
+/* header sedang menghilang — judul FAQ naik mengisi ruangnya */
+body.hdr-hidden .faq-head {
+  top: 1.25rem;
 }
 
 .faq-list {
