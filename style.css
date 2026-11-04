@@ -2669,6 +2669,10 @@ body.hdr-hidden .faq-head {
   line-height: 1.5;
 }
 
+.drawer .disc-note {
+  color: var(--ink);
+}
+
 .drawer-price {
   margin-bottom: 1.4rem;
   padding-bottom: 1.2rem;

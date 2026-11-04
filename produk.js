@@ -44,7 +44,7 @@ const PRODUK = [
     ringkas: "Coating full color, tahan microwave dan dishwasher.",
     mulai: 17500,
     unit: "pcs",
-    moq: 6,
+    moq: 1,
     warna: ["putih", "hitam", "vermillion", "lime", "navy"],
     ukuran: null,
     opsi: [
@@ -159,7 +159,7 @@ const PRODUK = [
     ringkas: "Pin press dengan permukaan laminasi doff, aman untuk suvenir.",
     mulai: 5000,
     unit: "pcs",
-    moq: 10,
+    moq: 1,
     warna: ["putih", "hitam", "vermillion", "lime", "navy"],
     ukuran: null,
     opsi: [
@@ -198,7 +198,7 @@ const PRODUK = [
     ringkas: "Akrilik potong laser, ring besi anti karat.",
     mulai: 7500,
     unit: "pcs",
-    moq: 10,
+    moq: 1,
     warna: ["putih", "hitam", "vermillion", "lime", "navy"],
     ukuran: null,
     opsi: [
@@ -233,7 +233,7 @@ const PRODUK = [
     ringkas: "Laserdruk rapi, staples atau jilid, siap kumpul besok.",
     mulai: 500,
     unit: "lembar",
-    moq: 10,
+    moq: 1,
     warna: ["putih"],
     ukuran: null,
     opsi: [
