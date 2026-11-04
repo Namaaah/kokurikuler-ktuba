@@ -1,5 +1,5 @@
 /* ============================================================
-   KTUBA — style.css
+   KTUBA ΓÇö style.css
    Design system: kertas hangat + tinta + vermillion
    ============================================================ */
 
@@ -1177,7 +1177,7 @@ svg {
   letter-spacing: 0.04em;
 }
 
-/* — Mug — */
+/* ΓÇö Mug ΓÇö */
 .obj--mug {
   width: 46cqw;
   height: 40cqw;
@@ -1222,7 +1222,7 @@ svg {
   transform: translate(-50%, -50%);
 }
 
-/* — Kaos — */
+/* ΓÇö Kaos ΓÇö */
 .obj--kaos {
   width: 62cqw;
   height: 60cqw;
@@ -1271,7 +1271,7 @@ svg {
   transform: translate(-50%, -50%);
 }
 
-/* — Totebag — */
+/* ΓÇö Totebag ΓÇö */
 .obj--tote {
   width: 50cqw;
   height: 48cqw;
@@ -1311,7 +1311,7 @@ svg {
   transform: translate(-50%, -50%);
 }
 
-/* — Pin — */
+/* ΓÇö Pin ΓÇö */
 .obj--pin {
   width: 40cqw;
   height: 40cqw;
@@ -1340,7 +1340,7 @@ svg {
   transform: rotate(-8deg);
 }
 
-/* — Gantungan kunci — */
+/* ΓÇö Gantungan kunci ΓÇö */
 .obj--gantungan {
   width: 32cqw;
   height: 38cqw;
@@ -1386,7 +1386,7 @@ svg {
   transform: translate(-50%, -50%);
 }
 
-/* — Dokumen — */
+/* ΓÇö Dokumen ΓÇö */
 .obj--dokumen {
   width: 36cqw;
   height: 46cqw;
@@ -1428,7 +1428,7 @@ svg {
   border-radius: 0.4cqw;
 }
 
-/* — Spanduk — */
+/* ΓÇö Spanduk ΓÇö */
 .obj--spanduk {
   width: 74cqw;
   height: 42cqw;
@@ -1473,7 +1473,7 @@ svg {
   font-size: 11cqw;
 }
 
-/* — Desain — */
+/* ΓÇö Desain ΓÇö */
 .obj--desain {
   width: 54cqw;
   height: 42cqw;
@@ -2208,11 +2208,11 @@ svg {
 }
 
 .card-ulasan blockquote::before {
-  content: "“";
+  content: "\201C";
 }
 
 .card-ulasan blockquote::after {
-  content: "”";
+  content: "\201D";
 }
 
 .card-ulasan figcaption {
@@ -2257,7 +2257,7 @@ svg {
   transition: top 0.3s var(--ease);
 }
 
-/* header sedang menghilang — judul FAQ naik mengisi ruangnya */
+/* header sedang menghilang ΓÇö judul FAQ naik mengisi ruangnya */
 body.hdr-hidden .faq-head {
   top: 1.25rem;
 }
@@ -2382,6 +2382,18 @@ body.hdr-hidden .faq-head {
 .cta-info dd {
   font-size: 0.92rem;
 }
+
+.maps-link {
+  display: inline-block;
+  margin-top: 0.3rem;
+  font-size: 0.82rem;
+  color: var(--vermillion);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.85;
+  transition: opacity 0.18s;
+}
+.maps-link:hover { opacity: 1; }
 
 .cta-mark {
   position: absolute;
@@ -2705,7 +2717,7 @@ body.hdr-hidden .faq-head {
     margin: 0 auto;
   }
 
-  /* kartu miring menyentuh tepi layar — tarik masuk agar tak bikin scroll */
+  /* kartu miring menyentuh tepi layar ΓÇö tarik masuk agar tak bikin scroll */
   .float-card--b {
     right: 3%;
   }

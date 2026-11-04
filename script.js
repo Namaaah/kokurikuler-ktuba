@@ -315,6 +315,9 @@
   qsa("[data-email-link]").forEach((a) => {
     a.href = `mailto:${K().email}?subject=${encodeURIComponent("Tanya layanan KTUBA")}`;
   });
+  qsa("[data-maps-link]").forEach((a) => {
+    if (K().maps) a.href = K().maps;
+  });
 
   const elTahun = qs("#tahun");
   if (elTahun) elTahun.textContent = new Date().getFullYear();
