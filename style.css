@@ -2012,7 +2012,10 @@ svg {
   grid-column: span 2;
   grid-row: span 2;
   background: var(--paper-2);
-  overflow: hidden;
+}
+
+.bento-cell--big .bento-num {
+  margin-bottom: 0;
 }
 
 .bento-num {
@@ -2069,40 +2072,13 @@ svg {
 }
 
 .bento-art {
-  position: absolute;
-  right: -6%;
-  bottom: -12%;
-  width: 58%;
-  opacity: 0.9;
-}
-
-.rollers {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  transform: rotate(-24deg);
-}
-
-.rollers span {
+  width: 100%;
+  max-width: 617px;
+  height: clamp(12rem, 26vw, 22rem);
+  margin: 0 auto 1rem;
   display: block;
-  height: 16px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--ink), var(--ink-3));
-}
-
-.rollers span:nth-child(2) {
-  width: 82%;
-  background: linear-gradient(90deg, var(--vermillion), var(--vermillion-d));
-}
-
-.rollers span:nth-child(3) {
-  width: 64%;
-  background: linear-gradient(90deg, #cfc6b4, #b9b09d);
-}
-
-.rollers span:nth-child(4) {
-  width: 46%;
-  background: linear-gradient(90deg, var(--lime), #c3dd52);
+  object-fit: contain;
+  object-position: center;
 }
 
 /* ------------------------------------------------------------
@@ -2918,6 +2894,10 @@ body.hdr-hidden .faq-head {
 
   .bento-cell--big {
     grid-column: auto;
+  }
+
+  .bento-art {
+    height: clamp(12rem, 55vw, 20rem);
   }
 
   .steps {
