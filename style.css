@@ -2289,6 +2289,18 @@ body.hdr-hidden .faq-head {
   font-size: 0.92rem;
 }
 
+.maps-link {
+  display: inline-block;
+  margin-top: 0.3rem;
+  font-size: 0.82rem;
+  color: var(--vermillion);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.85;
+  transition: opacity 0.18s;
+}
+.maps-link:hover { opacity: 1; }
+
 .cta-mark {
   position: absolute;
   right: -3%;
