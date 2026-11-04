@@ -602,7 +602,7 @@
     const heroFotos = [
       { src: "assets/produk/kaos.jpeg",    alt: "Kaos custom KTUBA" },
       { src: "assets/produk/optimized/3-mug.jpg", alt: "Mug custom KTUBA" },
-      { src: "assets/produk/tothebag.jpeg", alt: "Totebag custom KTUBA" },
+      { src: "assets/produk/totebag-head.png", alt: "Totebag custom KTUBA" },
     ];
     ["collageA", "collageB", "collageC"].forEach((id, i) => {
       const host = qs("#" + id);
