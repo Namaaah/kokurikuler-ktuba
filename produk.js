@@ -345,12 +345,14 @@ const PRODUK = [
    5. GALERI HASIL — pakai id produk + keterangan
    ------------------------------------------------------------ */
 const GALERI = [
-  { produk: "kaos", label: "Kaos komunitas · 48 pcs", warna: "navy" },
-  { produk: "mug", label: "Mug kafe · 60 pcs", warna: "putih" },
-  { produk: "totebag", label: "Totebag seminar · 120 pcs", warna: "natural" },
-  { produk: "spanduk", label: "Spanduk toko · 4 × 1 m", warna: "vermillion" },
-  { produk: "pin", label: "Pin acara · 250 pcs", warna: "lime" },
-  { produk: "gantungan", label: "Gantungan suvenir · 100 pcs", warna: "hitam" },
+  { produk: "kaos", gambar: "kaos.jpeg", label: "Kaos komunitas · 48 pcs", warna: "navy" },
+  { produk: "mug", gambar: "3-mug.jpg", label: "Mug kafe · 60 pcs", warna: "putih" },
+  { produk: "totebag", gambar: "tothebag.jpeg", label: "Totebag seminar · 120 pcs", warna: "natural" },
+  { produk: "spanduk", gambar: "banner.jpeg", label: "Spanduk toko · 4 × 1 m", warna: "vermillion" },
+  { produk: "pin", gambar: "pin.jpg", label: "Pin acara · 250 pcs", warna: "lime" },
+  { produk: "gantungan", gambar: "gantungan-kunci.jpg", label: "Gantungan suvenir · 100 pcs", warna: "hitam" },
+  { gambar: "stempel.jpg", label: "Stempel" },
+  { gambar: "krudung.jpg", label: "Kerudung" },
 ];
 
 /* ------------------------------------------------------------
