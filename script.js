@@ -331,15 +331,17 @@
 
   /* ══════════════════════ 7. KOLASE HERO ══════════════════════ */
   (function collage() {
-    const slots = { collageA: 0, collageB: 1, collageC: 2 };
-    const p = D();
-    Object.entries(slots).forEach(([id, idx]) => {
+    // Foto hero: kaos, mug, totebag dari assets/produk
+    const heroFotos = [
+      { src: "assets/produk/kaos.jpeg",    alt: "Kaos custom KTUBA" },
+      { src: "assets/produk/3-mug.jpg",    alt: "Mug custom KTUBA" },
+      { src: "assets/produk/tothebag.jpeg", alt: "Totebag custom KTUBA" },
+    ];
+    ["collageA", "collageB", "collageC"].forEach((id, i) => {
       const host = qs("#" + id);
-      const prod = p[idx];
-      if (!host || !prod) return;
-      const key = prod.warna ? prod.warna[0] : "putih";
-      const t = toneOf(key);
-      host.innerHTML = mockMarkup(prod.mock, t.tone, t.print);
+      if (!host) return;
+      const f = heroFotos[i];
+      host.innerHTML = `<img src="${f.src}" alt="${f.alt}" style="width:100%;height:100%;object-fit:cover;display:block;">`;
     });
 
     const col = qs("#collage");

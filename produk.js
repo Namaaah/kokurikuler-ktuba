@@ -68,7 +68,7 @@ const PRODUK = [
     ringkas: "Coating full color, tahan microwave dan dishwasher.",
     mulai: 17500,
     unit: "pcs",
-    moq: 1,
+    moq: 6,
     warna: ["putih", "hitam", "vermillion", "lime", "navy"],
     ukuran: null,
     opsi: [
