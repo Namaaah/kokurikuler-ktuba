@@ -17,8 +17,8 @@
 const KONTAK = {
   // Nomor WhatsApp, HANYA ANGKA, tanpa +, spasi, atau tanda hubung.
   // Contoh: 6281234567890  (08xx menjadi 628xx)
-  wa: "6281234567890",
-  tampil: "+62 812-3456-7890",
+  wa: "6285191241410",
+  tampil: "0851-9124-1410",
   email: "halo@ktuba.id",
   alamat: "Jl. Parangtritis No. KM. 11, Dukuh, Sabdodadi, Kec. Bantul, Kabupaten Bantul, DIY 55715",
   maps: "https://maps.google.com/?q=SMK+Negeri+1+Bantul,+Jl.+Parangtritis+KM+11,+Sabdodadi,+Bantul,+DIY",

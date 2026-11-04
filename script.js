@@ -15,9 +15,16 @@
   const HEX = /^#[0-9a-f]{6}$/i;
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const toTop = qs("#toTop");
+  if (toTop) {
+    const updateToTop = () => toTop.classList.toggle("is-visible", window.scrollY > 360);
+    window.addEventListener("scroll", updateToTop, { passive: true });
+    updateToTop();
+  }
+
   const D = () => (typeof PRODUK !== "undefined" ? PRODUK : []);
   const W = () => (typeof WARNA !== "undefined" ? WARNA : {});
-  const K = () => (typeof KONTAK !== "undefined" ? KONTAK : { wa: "6281234567890", email: "halo@ktuba.id" });
+  const K = () => (typeof KONTAK !== "undefined" ? KONTAK : { wa: "6285191241410", email: "halo@ktuba.id" });
 
   /* Observer reveal — dibuat sekali, malas, supaya bisa dipanggil
      dari modul mana pun tanpa urutan inisialisasi. */
