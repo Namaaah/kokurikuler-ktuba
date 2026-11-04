@@ -64,6 +64,13 @@ const PRODUK = [
     nama: "Mug Custom",
     kategori: "merch",
     mock: "mug",
+    /* Foto 2D: plate abu-abu (alpha = bentuk benda) diwarnai lewat CSS.
+       cetak = kotak sablon dalam persen dari plate. */
+    foto: {
+      src: "assets/preview/mug-plate.webp",
+      rasio: 1.0838,
+      cetak: { x: 11, y: 34, w: 48, h: 28 },
+    },
     tag: "Paling dicari",
     ringkas: "Coating full color, tahan microwave dan dishwasher.",
     mulai: 17500,
@@ -91,6 +98,13 @@ const PRODUK = [
     nama: "Kaos Custom",
     kategori: "merch",
     mock: "kaos",
+    /* Foto 2D: plate abu-abu (alpha = bentuk kain) diwarnai lewat CSS.
+       cetak = kotak sablon dalam persen dari plate. */
+    foto: {
+      src: "assets/preview/kaos-plate.webp",
+      rasio: 0.8602,
+      cetak: { x: 31, y: 44, w: 38, h: 24 },
+    },
     tag: null,
     ringkas: "Katun 24s atau 30s, DTF custom ukuran A4. S–XL dan XXL jumbo.",
     mulai: 60000,
@@ -128,6 +142,11 @@ const PRODUK = [
     nama: "Totebag Custom",
     kategori: "merch",
     mock: "tote",
+    foto: {
+      src: "assets/preview/totebag-plate.webp",
+      rasio: 0.5841,
+      cetak: { x: 18, y: 68, w: 60, h: 22 },
+    },
     tag: null,
     ringkas: "Kanvas tebal, jahitan ganda, tali kuat untuk beban harian.",
     mulai: 30000,
@@ -163,6 +182,11 @@ const PRODUK = [
     nama: "Pin Peniti",
     kategori: "merch",
     mock: "pin",
+    foto: {
+      src: "assets/preview/pin-plate.webp",
+      rasio: 1.003,
+      cetak: { x: 28, y: 40, w: 44, h: 18 },
+    },
     tag: null,
     ringkas: "Pin press dengan permukaan laminasi doff, aman untuk suvenir.",
     mulai: 5000,
@@ -197,6 +221,11 @@ const PRODUK = [
     nama: "Gantungan Kunci",
     kategori: "merch",
     mock: "gantungan",
+    foto: {
+      src: "assets/preview/gantungan-plate.webp",
+      rasio: 1.0088,
+      cetak: { x: 38, y: 55, w: 50, h: 22 },
+    },
     tag: null,
     ringkas: "Akrilik potong laser, ring besi anti karat.",
     mulai: 7500,

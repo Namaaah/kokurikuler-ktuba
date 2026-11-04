@@ -122,22 +122,55 @@
     desain: '<span class="p p--a"></span><span class="p p--b"></span><span class="p p--c"></span><span class="p p--d"></span>',
   };
 
-  function mockMarkup(mockId, tone, print) {
+  function mockMarkup(p, tone, print) {
+    if (p && p.foto) return fotoMarkup(p.foto, tone, print);
+    const mockId = p && p.mock;
     const inner = MOCK_INNER[mockId] || MOCK_INNER.pin;
     return `<div class="mock" style="--tone:${tone};--print:${print}"><div class="scene"><div class="obj obj--${mockId}">${inner}</div></div></div>`;
+  }
+
+  /* Foto 2D berwarna: satu plate abu-abu dipakai dua kali —
+     sebagai mask (bentuk kain) dan sebagai pengali (lipatan kain).
+     Hasilnya warna pilihan user dengan bayangan asli foto. */
+  function fotoMarkup(f, tone, print) {
+    const c = f.cetak || { x: 33, y: 46, w: 34, h: 26 };
+    const url = `url('${f.src}')`;
+    /* Kain terang: multiply mempertahankan lipatan apa adanya.
+       Kain gelap: multiply menghapus semua lipatan jadi hitam rata, jadi
+       soft-light dipakai — plate yang sama menaikkan serat tanpa menaruh
+       lapisan cahaya di atas kain. */
+    const gelap = lumaDari(tone) < 0.42;
+    return `<div class="foto" style="--tone:${tone};--print:${print};--img:${url};--rasio:${f.rasio || 0.8}">
+      <div class="foto-lantai" aria-hidden="true"></div>
+      <div class="foto-panggung">
+        <div class="foto-objek" style="--cx:${c.x}%;--cy:${c.y}%;--cw:${c.w}%;--ch:${c.h}%;--blend:${gelap ? "soft-light" : "multiply"};--blend-cetak:${gelap ? "normal" : "multiply"}">
+          <span class="foto-cetak" aria-hidden="true">KTUBA</span>
+        </div>
+      </div>
+    </div>`;
   }
 
   /* Warna bisa berupa kunci di WARNA atau kode hex langsung (warna custom). */
 
   /* Warna tinta cetak yang tetap terbaca di atas warna apa pun:
      latar terang → vermillion, latar gelap → kertas. */
-  function cetakDi(hex) {
+  function lumaDari(hex) {
     const n = parseInt(hex.slice(1), 16);
     const r = (n >> 16) & 255;
     const g = (n >> 8) & 255;
     const b = n & 255;
-    const luma = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
-    return luma > 0.56 ? "#FF4A1C" : "#FBF8F2";
+    return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+  }
+
+  function cetakDi(hex) {
+    return lumaDari(hex) > 0.56 ? "#FF4A1C" : "#FBF8F2";
+  }
+
+  /* Ikon di dalam lingkaran swatch: bukan tinta cetak, jadi ambil yang paling
+     kontras mentah — tinta di atas warna terang, kertas di atas warna gelap.
+     Titik silang kontras sesungguhnya ada di luma ~0.28. */
+  function tintaSwatch(hex) {
+    return lumaDari(hex) > 0.32 ? "#111314" : "#FBF8F2";
   }
 
   function toneOf(key) {
@@ -160,13 +193,21 @@
       .join("");
 
     const nilai = W()[aktif] ? W()[aktif].hex : custom ? aktif : "#4A7AB8";
+    const swWarna = custom ? aktif : "#FF4A1C";
     const labelCustom = custom
       ? "Ubah warna custom " + aktif.toUpperCase()
       : "Pilih warna sendiri";
 
+    const ikon =
+      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">` +
+      `<path d="m2 22 1-1h3l9-9"/>` +
+      `<path d="M3 21v-3l9-9"/>` +
+      `<path d="m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l.4.4a2.1 2.1 0 1 1-3 3l-3.8-3.8a2.1 2.1 0 1 1 3-3l.4.4Z"/>` +
+      `</svg>`;
+
     return (
       preset +
-      `<span class="swatch-custom-wrap"><button type="button" class="swatch swatch--custom${custom ? " is-active" : ""}" style="--sw:${custom ? aktif : "#FF4A1C"}" data-custom-color aria-label="${labelCustom}" title="${labelCustom}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.25a8.75 8.75 0 1 0 0 17.5h1.12a2.1 2.1 0 0 0 1.46-3.61 1.1 1.1 0 0 1 .78-1.89h1.16A4.23 4.23 0 0 0 20.75 11C20.75 6.72 16.83 3.25 12 3.25Z"></path><circle cx="7.5" cy="11" r="1" fill="#FF4A1C" stroke="none"></circle><circle cx="10.5" cy="7.5" r="1" fill="#D8F26A" stroke="none"></circle><circle cx="15" cy="7.8" r="1" fill="#6B6560" stroke="none"></circle><circle cx="16.5" cy="12" r="1" fill="#E2DCCF" stroke="none"></circle><circle cx="14.6" cy="16.1" r="1.25" fill="var(--sw)" stroke="none"></circle></svg></button><input class="swatch-custom-input" type="color" value="${nilai}" tabindex="-1" aria-hidden="true"></span>`
+      `<span class="swatch-custom-wrap"><button type="button" class="swatch swatch--custom${custom ? " is-active" : ""}" style="--sw:${swWarna};--sw-ink:${tintaSwatch(swWarna)}" data-custom-color aria-label="${labelCustom}" title="${labelCustom}">${ikon}</button><input class="swatch-custom-input" type="color" value="${nilai}" tabindex="-1" aria-hidden="true"></span>`
     );
   }
 
@@ -386,10 +427,9 @@
         <article class="card reveal" style="--d:${i * 55}ms">
           <button class="card-hit" type="button" data-open="${p.id}" aria-label="Lihat detail ${p.nama}">
             <div class="media">
-              ${mockMarkup(p.mock, t.tone, t.print)}
-              <!-- FOTO PRODUK: hapus .mock di atas, ganti dengan baris berikut
-              <img src="assets/produk/${p.id}.jpg" alt="${p.nama} custom KTUBA">
-              -->
+              ${mockMarkup(p, t.tone, t.print)}
+              <!-- Pratinjau diambil dari kunci foto di produk.js (plate di assets/preview).
+                   Foto katalog di assets/produk terpisah — jangan dipakai di sini. -->
             </div>
           </button>
           <div class="card-body">
@@ -561,7 +601,7 @@
     if (!st) return;
     const { p } = st;
     const t = toneOf(st.toneKey);
-    drawerEls.media.innerHTML = mockMarkup(p.mock, t.tone, t.print);
+    drawerEls.media.innerHTML = mockMarkup(p, t.tone, t.print);
     drawerEls.total.textContent = rp(hitungTotal(p, st.opsi, st.qty));
 
     const dis = diskonAktif(p, st.qty);
@@ -617,6 +657,7 @@
       const button = inp.previousElementSibling;
       st.toneKey = inp.value;
       button.style.setProperty("--sw", inp.value);
+      button.style.setProperty("--sw-ink", tintaSwatch(inp.value));
       button.title = "Ubah warna custom " + inp.value.toUpperCase();
       button.setAttribute("aria-label", button.title);
       qsa(".swatch", drawerEls.warna).forEach((x) => x.classList.toggle("is-active", x === button));
@@ -739,7 +780,7 @@
       const total = hitungTotal(p, kst.opsi, kst.qty);
       const dis = diskonAktif(p, kst.qty);
 
-      els.media.innerHTML = mockMarkup(p.mock, t.tone, t.print);
+      els.media.innerHTML = mockMarkup(p, t.tone, t.print);
       els.badge.textContent = p.nama;
       els.total.textContent = rp(total);
 
@@ -836,6 +877,7 @@
       const button = inp.previousElementSibling;
       kst.toneKey = inp.value;
       button.style.setProperty("--sw", inp.value);
+      button.style.setProperty("--sw-ink", tintaSwatch(inp.value));
       button.title = "Ubah warna custom " + inp.value.toUpperCase();
       button.setAttribute("aria-label", button.title);
       qsa(".swatch", els.warna).forEach((x) => x.classList.toggle("is-active", x === button));
@@ -897,7 +939,7 @@
             ${
               g.gambar
                 ? `<img src="assets/produk/${g.gambar}" alt="${g.label}" loading="lazy" decoding="async">`
-                : mockMarkup(p.mock, t.tone, t.print)
+                : mockMarkup(p, t.tone, t.print)
             }
           </div>
           <figcaption>${g.label}</figcaption>
