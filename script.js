@@ -1,26 +1,256 @@
-/* ============================================================
-   KTUBA — script.js
-   Vanilla JS, tanpa dependensi.
-   Modul: pemesanan WhatsApp, drawer, konfigurator,
-   filter katalog, marquee, counter, scroll-reveal.
-   ============================================================ */
-
 (function () {
   "use strict";
 
-  /* ── helper ─────────────────────────────────────────────── */
   const qs = (s, c = document) => c.querySelector(s);
   const qsa = (s, c = document) => Array.from(c.querySelectorAll(s));
-  const rp = (n) => "Rp " + Math.round(n || 0).toLocaleString("id-ID");
+  const rp = (n) => language === "en"
+    ? "IDR " + Math.round(n || 0).toLocaleString("en-US")
+    : "Rp " + Math.round(n || 0).toLocaleString("id-ID");
   const HEX = /^#[0-9a-f]{6}$/i;
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const EN_TEXT = {
+    "Lewati ke konten": "Skip to content",
+    "KTUBA, kembali ke atas": "KTUBA, back to top",
+    "Navigasi utama": "Main navigation",
+    "Navigasi seluler": "Mobile navigation",
+    "Layanan": "Services", "Harga": "Pricing", "Proses": "Process", "Hasil": "Work", "FAQ": "FAQ",
+    "Chat WhatsApp": "Chat on WhatsApp", "Buka menu": "Open menu",
+    "Percetakan & desain grafis · sejak": "Printing & graphic design · since",
+    "Cetak yang bikin": "Print that makes",
+    "orang minta": "people ask for",
+    "satu lagi.": "one more.",
+    "Merchandise custom, dokumen, spanduk, sampai desain grafis komersial. Dikerjakan dengan mesin cetak skala industri — dan bisa mulai dari satu buah.": "Custom merchandise, documents, banners, and commercial graphic design. Produced on industrial-scale printing equipment, with orders starting from just one piece.",
+    "Lihat layanan": "Explore services", "Hitung harga": "Get a quote",
+    "MOQ 1 pcs": "Minimum order: 1 piece", "Revisi desain gratis": "Free design revisions", "Kirim seluruh Indonesia": "Shipping across Indonesia",
+    "Angka singkat KTUBA": "KTUBA at a glance",
+    "Layanan KTUBA": "KTUBA services",
+    "Tiga belas cara": "Thirteen ways",
+    "membuat idemu": "to turn your idea into a",
+    "benda.": "real object.",
+    "Pilih produknya, lihat estimasi harganya, lalu pesan langsung ke WhatsApp. Tidak perlu daftar akun.": "Choose a product, check the estimated price, then order directly on WhatsApp. No account needed.",
+    "Filter kategori": "Filter by category",
+    "Harga di atas adalah estimasi awal sebelum pilihan bahan dan jumlah. Angka final dikonfirmasi lewat WhatsApp.": "Prices shown are starting estimates before material and quantity options. The final price is confirmed via WhatsApp.",
+    "Hitung cepat": "Quick estimate", "Berapa totalnya?": "What's the total?",
+    "Ubah bahan, warna, dan jumlah — harga serta ilustrasinya ikut berubah.": "Change the material, color, and quantity—the price and preview update with your choices.",
+    "Produk": "Product", "Warna": "Color", "Ukuran": "Size", "Jumlah": "Quantity", "Jumlah pesanan": "Order quantity",
+    "Catatan: warna yang dipilih hanya mengubah ilustrasi pratinjau, bukan warna desain atau cetakan akhir.": "Note: the selected color changes the product preview only, not the final design or print color.",
+    "Kurangi jumlah": "Decrease quantity", "Tambah jumlah": "Increase quantity",
+    "Estimasi": "Estimate", "Perkiraan total": "Estimated total", "Pesan via WhatsApp": "Order on WhatsApp",
+    "Alur kerja": "How it works", "Dari file mentah": "From your first idea",
+    "ke": "to",
+    "tangan orang.": "something in your hands.",
+    "Empat langkah, tanpa jalan buntu. Setiap tahap kamu tahu posisinya.": "Four clear steps, with updates at every stage.",
+    "Kirim ide": "Send your idea", "Bisa file jadi, sketsa, atau cuma cerita. Kami bantu rapikan.": "Send a finished file, a sketch, or just describe what you have in mind. We'll help refine it.",
+    "Approve desain": "Approve the design", "Kamu terima mockup dan estimasi harga sebelum apa pun dicetak.": "You'll receive a mockup and price estimate before anything goes to print.",
+    "Produksi": "Production", "Masuk mesin cetak industri. Rata-rata 1–3 hari kerja.": "Your order goes to our industrial printers. Production usually takes 1–3 business days.",
+    "Kirim": "Delivery", "Dikemas aman, dikirim ke alamat atau diambil di tempat.": "Packed securely, then shipped to you or ready for pickup.",
+    "Kenapa KTUBA": "Why KTUBA", "Perbedaan yang": "A difference",
+    "kamu": "you", "rasakan.": "can feel.",
+    "Mesin industri, bukan printer rumahan": "Industrial printers, not home printers",
+    "Warna lebih rata, hasil lebih konsisten, dan kapasitas besar tetap selesai cepat. Satu pesanan atau seribu, mesinnya sama.": "More even color, consistent results, and fast turnaround at scale. One order or a thousand, the same professional equipment does the work.",
+    "Mulai dari 1 pcs": "Orders from 1 piece", "Tidak perlu memesan banyak cuma untuk coba desain.": "No need to order in bulk just to try out a design.",
+    "File kamu aman": "Your files stay yours", "Desain tidak dipakai ulang tanpa izin tertulis.": "Your design is never reused without written permission.",
+    "Garansi cetak ulang": "Reprint guarantee", "Hasil meleset dari approval? Kami cetak ulang.": "If the print doesn't match the approved proof, we'll reprint it.",
+    "Desain dibantu": "Design support", "Tidak punya file siap cetak? Tim kami bisa membuatkan dari nol.": "Don't have a print-ready file? Our team can create one from scratch.",
+    "Lihat jasa desain": "Explore design services",
+    "Hasil produksi": "Our work", "Yang sudah": "Made by us",
+    "kami": "and",
+    "cetak.": "printed.",
+    "Dokumentasi hasil cetak dan produk yang sudah diproduksi.": "A selection of printed work and finished products.",
+    "Kata pelanggan": "Customer stories", "Mereka sudah": "They've seen",
+    "pegang": "the",
+    "hasilnya.": "results.",
+    "Pesan mug buat reuni, awalnya ragu soal warna. Eh ternyata hasilnya persis banget sama yang di mockup, bahkan lebih bagus aslinya. Temen-temen pada nanya pesan di mana haha.": "I ordered mugs for a reunion and was unsure about the colors. They came out exactly like the mockup—actually even better in person. Everyone asked where I ordered them.",
+    "Mug custom · 40 pcs · reuni SMA": "Custom mugs · 40 pieces · high school reunion",
+    "Logo saya cuma foto dari HP, resolusinya jelek. Tapi timnya langsung bilang oke, dibenerin dulu tanpa nambah biaya. Spanduk jadinya bagus, ga keliatan kalau sumbernya foto HP wkwk.": "My logo was just a low-resolution phone photo. The team fixed it at no extra cost, and the banner turned out great—you'd never know the source was a phone photo.",
+    "Spanduk + kaos · UMKM kuliner": "Banner + T-shirts · food business",
+    "Salah pilih ukuran totebag, itu salah saya sendiri. Tapi begitu lapor, langsung diproses ulang tanpa drama. Sorenya udah beres. Sekarang kalau ada kebutuhan cetak pasti balik sini lagi.": "I chose the wrong tote bag size—that was my mistake. When I let them know, they reprinted it right away. It was ready that afternoon. I'll definitely come back for future print jobs.",
+    "Totebag custom · 120 pcs · seminar": "Custom tote bags · 120 pieces · seminar",
+    "Bergabung bersama ratusan pelanggan yang sudah percayakan cetaknya ke KTUBA.": "Join hundreds of customers who trust KTUBA with their printing.",
+    "Pertanyaan": "Questions", "Sebelum": "Before",
+    "memesan.": "you order.",
+    "Berapa minimum order?": "What is the minimum order?",
+    "Merchandise seperti mug, kaos, dan totebag bisa mulai 1 pcs. Pin dan gantungan kunci minimum 10 pcs karena proses cetaknya sekali jalan untuk satu batch. Cetak dokumen minimum 10 lembar.": "Merchandise such as mugs, T-shirts, and tote bags can be ordered from 1 piece. Pins and keychains have a 10-piece minimum because they are printed in batches. Document printing starts at 10 sheets.",
+    "Berapa lama prosesnya?": "How long does production take?",
+    "Rata-rata 1–3 hari kerja setelah desain disetujui. Cetak dokumen bisa selesai hari yang sama. Untuk jumlah besar di atas 100 pcs atau finishing khusus, kami kabari estimasi pastinya sebelum produksi.": "Production usually takes 1–3 business days after design approval. Document printing may be ready the same day. For orders over 100 pieces or special finishing, we'll confirm the timeline before production.",
+    "Format file apa yang dibutuhkan?": "What file formats do you accept?",
+    "Paling ideal PDF, AI, atau PNG transparan dengan resolusi minimal 300 dpi. Kalau yang ada cuma foto logo dari HP, kirim saja — kami bantu rapikan jadi file siap cetak tanpa biaya tambahan.": "PDF, AI, or transparent PNG at 300 dpi or higher work best. If you only have a photo of your logo, send it over—we can prepare a print-ready file at no extra cost.",
+    "Bisa revisi desain?": "Can I request design revisions?",
+    "Bisa. Sebelum produksi, kamu akan menerima mockup untuk disetujui. Revisi desain gratis sampai kamu setuju. Setelah produksi jalan, perubahan tidak bisa dilakukan karena bahan sudah terpotong.": "Yes. We'll send you a mockup for approval before production. Design revisions are free until you approve it. Once production begins, changes aren't possible because the material may already be cut.",
+    "Bagaimana pengiriman dan pembayarannya?": "What are the delivery and payment options?",
+    "Pengiriman ke seluruh Indonesia lewat ekspedisi rekanan, atau ambil langsung di tempat. Pembayaran 50% di awal sebagai DP, sisanya setelah produksi selesai dan sebelum dikirim.": "We ship throughout Indonesia with our courier partners, or you can pick up your order. A 50% deposit is due upfront, with the balance payable after production and before delivery.",
+    "Mulai sekarang": "Get started", "Ide kamu,": "Your idea,",
+    "jadi nyata.": "made real.",
+    "Kirim kebutuhanmu lewat WhatsApp. Kami balas dengan estimasi harga dan waktu pengerjaan yang jelas.": "Tell us what you need on WhatsApp. We'll reply with a clear price estimate and turnaround time.",
+    "Alamat": "Address", "Lihat di Google Maps ↗": "View on Google Maps ↗", "Jam buka": "Business hours",
+    "Percetakan dan desain grafis. Merchandise custom, cetak dokumen, media promosi, dan visual komersial.": "Printing and graphic design. Custom merchandise, document printing, promotional materials, and commercial visuals.",
+    "Kontak": "Contact", "Mug & kaos custom": "Custom mugs & T-shirts", "Totebag, pin, gantungan": "Tote bags, pins & keychains", "Cetak dokumen": "Document printing", "Spanduk & banner": "Banners & signage", "Desain grafis": "Graphic design",
+    "Google Maps ↗": "Google Maps ↗", "Kembali ke atas ↑": "Back to top ↑", "Seluruh hak cipta.": "All rights reserved.", "KTUBA. Seluruh hak cipta.": "KTUBA. All rights reserved.",
+    "Detail produk": "Product details", "Tutup detail produk": "Close product details", "Mulai": "From", "Total": "Total",
+    "Semua": "All", "Cetak": "Print", "Desain": "Design", "Paling dicari": "Popular",
+    "Mug Custom": "Custom Mug", "Kaos Custom": "Custom T-shirt", "Totebag Custom": "Custom Tote Bag", "Pin Peniti": "Button Pin", "Gantungan Kunci": "Keychain", "Cetak Dokumen": "Document Printing", "Spanduk & Banner": "Banner & Signage", "Sticker Vinyl": "Vinyl Sticker", "Jilbab Custom": "Custom Hijab", "Kalender Dinding": "Wall Calendar", "Kalender Meja": "Desk Calendar", "Brosur": "Brochure", "Jasa Foto Pas": "ID Photo Printing", "Desain Grafis": "Graphic Design",
+    "Coating full color, tahan microwave dan dishwasher.": "Full-color coating, microwave- and dishwasher-safe.",
+    "Katun 24s atau 30s, DTF custom ukuran A4. S–XL dan XXL jumbo.": "24s or 30s cotton with custom A4 DTF printing. Sizes S–XL and XXL.",
+    "Kanvas tebal, jahitan ganda, tali kuat untuk beban harian.": "Heavy canvas, double stitching, and sturdy straps for everyday use.",
+    "Pin press dengan permukaan laminasi doff, aman untuk suvenir.": "Pressed pin with a matte laminated finish, ideal for souvenirs.",
+    "Akrilik potong laser, ring besi anti karat.": "Laser-cut acrylic with a rust-resistant metal ring.",
+    "Laserdruk rapi, staples atau jilid, siap kumpul besok.": "Clean laser printing, stapled or bound, ready for tomorrow.",
+    "Banner indoor Flexy 280 GSM. Tahan dan cerah, per meter persegi.": "Bright, durable 280 GSM indoor Flexy banner, priced per square meter.",
+    "Bahan vinyl, berwarna cerah, tahan air. Tersedia A4 dan A3.": "Bright, water-resistant vinyl, available in A4 and A3.",
+    "Bahan Polino, ukuran 115 cm, cetak DTF full color.": "115 cm Polino fabric with full-color DTF printing.",
+    "Art Paper 120 gr ukuran A3, 13 lembar, warna, klem siap gantung.": "13 full-color A3 sheets on 120 gsm art paper, with a hanging clip.",
+    "Ivory 260 gr ukuran A5, 6 lembar, warna, spiral berdiri rapi.": "Six full-color A5 sheets on 260 gsm ivory stock with a standing spiral binding.",
+    "A4, bolak-balik, warna. Harga per rim (500 lembar).": "Full-color, double-sided A4. Priced per ream (500 sheets).",
+    "Foto pas 3×4 dan 4×6, cetak minimal 4 lembar per paket.": "ID photos in 3×4 and 4×6 cm sizes. Minimum 4 prints per package.",
+    "File siap cetak, termasuk revisi dan hak pakai penuh.": "Print-ready files, revisions, and full usage rights included.",
+    "Area cetak": "Print area", "Bahan": "Material", "Teknik cetak": "Printing method", "Diameter": "Diameter", "Sisi": "Sides", "Kertas": "Paper", "Tinta": "Ink", "Finishing": "Finishing", "Spesifikasi": "Specifications", "Paket": "Package", "Tingkat revisi": "Revision level",
+    "Hitam putih": "Black and white", "Warna": "Color", "Tanpa jilid": "Unbound", "Jilid lakban": "Tape binding", "Kanvas tebal": "Heavy canvas", "Kanvas press": "Pressed canvas", "Akrilik doff": "Matte acrylic", "Akrilik bening": "Clear acrylic", "Logo saja": "Logo only", "Logo + 3 turunan": "Logo + 3 variations", "Brand kit lengkap": "Complete brand kit", "Revisi tanpa batas": "Unlimited revisions", "Revisi": "Revisions",
+    "Pesanan selesai": "Orders completed", "Rata-rata pengerjaan": "Average turnaround", "Minimum order": "Minimum order", "Layanan cetak & desain": "Print & design services",
+    "Putih": "White", "Hitam": "Black",
+    "Senin–Jumat · 08.00–15.00 WIB": "Monday–Friday · 08:00–15:00 WIB",
+    "0851-9124-1410 · Senin–Jumat · 08.00–15.00 WIB": "0851-9124-1410 · Monday–Friday · 08:00–15:00 WIB",
+    "Kaos komunitas · 48 pcs": "Community T-shirts · 48 pieces", "Mug kafe · 60 pcs": "Cafe mugs · 60 pieces", "Totebag seminar · 120 pcs": "Seminar tote bags · 120 pieces", "Spanduk toko · 4 × 1 m": "Store banner · 4 × 1 m", "Pin acara · 250 pcs": "Event pins · 250 pieces", "Gantungan suvenir · 100 pcs": "Souvenir keychains · 100 pieces", "Stempel": "Stamp", "Kerudung": "Hijab",
+    "Diskon ": "Discount ", " aktif untuk ": " active for ", "Tambah ": "Add ", " lagi → diskon ": " more → discount ", "Lihat produk ": "View ", "Pesan ": "Order ", "Warna ": "Color ", "Ubah warna custom ": "Choose custom color ", "Pilih warna sendiri": "Choose a custom color", "Custom ": "Custom ", "Ukuran ": "Size ",
+    "ukuran.": "size.", "pcs": "pieces", "lembar": "sheets", "paket": "packages", "layanan": "services", "hari": "days", "jenis": "types", "5 dari 5 bintang": "5 out of 5 stars",
+    "/ pcs": "/ pieces", "/ lembar": "/ sheets", "/ rim": "/ ream", "/ paket": "/ package", "/ m2": "/ m²",
+    "Full color coating": "Full-color coating", "1 sisi": "1 side", "2 sisi": "2 sides",
+    "Katun Combed 30s (S–XL)": "30s combed cotton (S–XL)", "Katun Combed 30s (XXL Jumbo)": "30s combed cotton (XXL)", "Katun Combed 24s (S–XL)": "24s combed cotton (S–XL)", "Katun Combed 24s (XXL Jumbo)": "24s combed cotton (XXL)",
+    "Sablon plastisol": "Plastisol screen printing", "Bordir": "Embroidery", "Blacu": "Unbleached cotton", "Akrilik": "Acrylic", "Karet": "Rubber", "Hitam putih": "Black and white", "Tanpa jilid": "Unbound", "Jilid lakban": "Tape binding", "Akrilik doff": "Matte acrylic", "Akrilik bening": "Clear acrylic",
+    "HVS 70 gsm": "70 gsm HVS paper", "HVS 80 gsm": "80 gsm HVS paper", "Art paper 120 gsm": "120 gsm art paper", "Flexy 280 GSM (indoor)": "280 GSM Flexy (indoor)", "Flexi Korea (outdoor)": "Korean Flexi (outdoor)", "Albatros (outdoor premium)": "Albatros (premium outdoor)", "A4 (Rp 10.000/lembar)": "A4 (IDR 10,000/sheet)", "A3 (Rp 20.000/lembar)": "A3 (IDR 20,000/sheet)", "Polino 115 cm + DTF": "115 cm Polino + DTF",
+    "A3 · Art Paper 120 gr · 13 lembar · klem": "A3 · 120 gsm art paper · 13 sheets · hanging clip", "A5 · Ivory 260 gr · 6 lembar · spiral": "A5 · 260 gsm ivory · 6 sheets · spiral binding", "A4 bolak-balik · full color": "A4 double-sided · full color", "3×4 (min. 4 lembar)": "3×4 cm (min. 4 prints)", "4×6 (min. 4 lembar)": "4×6 cm (min. 4 prints)", "3×4 + 4×6 combo": "3×4 + 4×6 combo", "Logo saja": "Logo only", "Logo + 3 turunan": "Logo + 3 variations", "Brand kit lengkap": "Complete brand kit", "2× revisi": "2 revisions"
+  };
+
+  const EN_UPPER_TEXT = Object.fromEntries(Object.entries(EN_TEXT).map(([source, translated]) => [source.toUpperCase(), translated.toUpperCase()]));
+  const originalText = new WeakMap();
+  const originalAttributes = new WeakMap();
+  let language = "id";
+  const normalizeText = (value) => value.trim().replace(/\s+/g, " ");
+
+  function translateValue(value) {
+    const key = normalizeText(value);
+    if (EN_TEXT[key]) return EN_TEXT[key];
+    if (key === key.toUpperCase() && EN_UPPER_TEXT[key]) return EN_UPPER_TEXT[key];
+    const patterns = [
+      [/^Lihat detail (.+)$/, (match) => `View details for ${translateValue(match[1])}`],
+      [/^Lihat produk (.+)$/, (match) => `View ${translateValue(match[1])}`],
+      [/^Pesan (.+)$/, (match) => `Order ${translateValue(match[1])}`],
+      [/^Warna (.+)$/, (match) => translateValue(match[1])],
+      [/^Ubah warna custom (.+)$/, (match) => `Choose custom color ${match[1]}`],
+      [/^Ukuran (.+)$/, (match) => `Size ${match[1]}`],
+      [/^Custom (#[0-9A-F]{6})$/i, (match) => `Custom ${match[1]}`],
+      [/^Diskon (\d+)% aktif untuk (\d+) (.+)\.$/, (match) => `A ${match[1]}% discount applies to ${match[2]} ${translateValue(match[3])}.`],
+      [/^Tambah (\d+) (.+) lagi → diskon (\d+)%\.$/, (match) => `Add ${match[1]} ${translateValue(match[2])} to get a ${match[3]}% discount.`],
+      [/^Rp ([\d.]+)$/, (match) => `IDR ${Number(match[1].replaceAll(".", "")).toLocaleString("en-US")}`],
+      [/^(\d+) (pcs|lembar|paket|layanan)$/, (match) => `${match[1]} ${{ pcs: "pieces", lembar: "sheets", paket: "packages", layanan: "services" }[match[2]]}`],
+      [/^(\d+) hari kerja$/, (match) => `${match[1]} business days`],
+    ];
+    for (const [pattern, replacement] of patterns) {
+      const match = key.match(pattern);
+      if (match) return replacement(match);
+    }
+    return value;
+  }
+
+  function applyLanguage(nextLanguage) {
+    language = nextLanguage;
+    document.documentElement.lang = language;
+    const toggle = qs("#langToggle");
+    if (toggle) {
+      toggle.textContent = language === "id" ? "EN" : "ID";
+      toggle.setAttribute("aria-pressed", String(language === "en"));
+      toggle.setAttribute("aria-label", language === "id" ? "Switch language to English" : "Ganti bahasa ke Indonesia");
+      toggle.title = language === "id" ? "Switch to English" : "Ganti ke Bahasa Indonesia";
+    }
+    document.title = language === "en" ? "KTUBA — Custom printing & graphic design" : "KTUBA — Cetak merchandise & desain grafis";
+    const description = qs('meta[name="description"]');
+    if (description) description.content = language === "en"
+      ? "KTUBA — Custom printing and graphic design. Mugs, T-shirts, tote bags, pins, keychains, document printing, banners, and commercial design. From one piece, produced with professional equipment."
+      : "KTUBA — percetakan dan desain grafis. Mug, kaos, totebag, pin, gantungan kunci custom, cetak dokumen, spanduk, dan desain komersial. Mulai dari 1 pcs, dikerjakan mesin cetak skala industri.";
+
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    let node;
+    while ((node = walker.nextNode())) {
+      if (!originalText.has(node)) originalText.set(node, node.nodeValue);
+      const source = originalText.get(node);
+      const leading = source.match(/^\s*/)[0];
+      const trailing = source.match(/\s*$/)[0];
+      const content = normalizeText(source);
+      const translated = language === "en" ? translateValue(content) : source;
+      const result = language === "en" ? leading + translated + trailing : source;
+      if (node.nodeValue !== result) node.nodeValue = result;
+    }
+
+    const translatableAttributes = ["aria-label", "title", "placeholder", "alt"];
+    document.body.querySelectorAll("*").forEach((element) => {
+      translatableAttributes.forEach((attribute) => {
+        if (!element.hasAttribute(attribute)) return;
+        let values = originalAttributes.get(element);
+        if (!values) {
+          values = {};
+          originalAttributes.set(element, values);
+        }
+        if (!(attribute in values)) values[attribute] = element.getAttribute(attribute);
+        const source = values[attribute];
+        element.setAttribute(attribute, language === "en" ? translateValue(source) : source);
+      });
+    });
+    if (toggle) {
+      toggle.textContent = language === "id" ? "EN" : "ID";
+      toggle.setAttribute("aria-label", language === "id" ? "Switch language to English" : "Switch language to Indonesian");
+      toggle.title = language === "id" ? "Switch to English" : "Switch to Indonesian";
+    }
+  }
+
+  const languageObserver = new MutationObserver((mutations) => {
+    if (language !== "en") return;
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          if (!originalText.has(node)) originalText.set(node, node.nodeValue);
+          const value = originalText.get(node);
+          const leading = value.match(/^\s*/)[0];
+          const trailing = value.match(/\s*$/)[0];
+          node.nodeValue = leading + translateValue(normalizeText(value)) + trailing;
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+          let child;
+          while ((child = walker.nextNode())) {
+            if (!originalText.has(child)) originalText.set(child, child.nodeValue);
+            const value = originalText.get(child);
+            const leading = value.match(/^\s*/)[0];
+            const trailing = value.match(/\s*$/)[0];
+            const translated = translateValue(normalizeText(value));
+            if (child.nodeValue !== leading + translated + trailing) child.nodeValue = leading + translated + trailing;
+          }
+          [node, ...node.querySelectorAll("*")].forEach((element) => {
+            ["aria-label", "title", "placeholder", "alt"].forEach((attribute) => {
+              if (!element.hasAttribute(attribute)) return;
+              let values = originalAttributes.get(element);
+              if (!values) { values = {}; originalAttributes.set(element, values); }
+              if (!(attribute in values)) values[attribute] = element.getAttribute(attribute);
+              element.setAttribute(attribute, translateValue(values[attribute]));
+            });
+          });
+        }
+      });
+    });
+  });
+  languageObserver.observe(document.body, { childList: true, subtree: true });
+  applyLanguage("id");
+  qs("#langToggle")?.addEventListener("click", () => applyLanguage(language === "id" ? "en" : "id"));
+
+  const toTop = qs("#toTop");
+  if (toTop) {
+    const updateToTop = () => toTop.classList.toggle("is-visible", window.scrollY > 360);
+    window.addEventListener("scroll", updateToTop, { passive: true });
+    updateToTop();
+  }
+
   const D = () => (typeof PRODUK !== "undefined" ? PRODUK : []);
   const W = () => (typeof WARNA !== "undefined" ? WARNA : {});
-  const K = () => (typeof KONTAK !== "undefined" ? KONTAK : { wa: "6281234567890", email: "halo@ktuba.id" });
+  const K = () => (typeof KONTAK !== "undefined" ? KONTAK : { wa: "6285191241410", email: "halo@ktuba.id" });
 
-  /* Observer reveal — dibuat sekali, malas, supaya bisa dipanggil
-     dari modul mana pun tanpa urutan inisialisasi. */
   let ioReveal = null;
   function observeReveals() {
     if (!ioReveal) {
@@ -38,8 +268,6 @@
     qsa(".reveal:not(.is-in)").forEach((el) => ioReveal.observe(el));
   }
 
-
-  /* ══════════════════════ 1. HARGA ══════════════════════ */
   function hitungSatuan(p, opsiIdx) {
     let satuan = p.mulai;
     (p.opsi || []).forEach((g, i) => {
@@ -76,19 +304,24 @@
   function labelVarian(p, opsiIdx, toneKey, ukuran) {
     const out = [];
     const w = W()[toneKey];
-    if (w) out.push(w.nama);
-    else if (HEX.test(toneKey || "")) out.push("Custom " + toneKey.toUpperCase());
-    if (ukuran) out.push("Ukuran " + ukuran);
+    if (w) out.push(language === "en" ? translateValue(w.nama) : w.nama);
+    else if (HEX.test(toneKey || "")) out.push((language === "en" ? "Custom " : "Custom ") + toneKey.toUpperCase());
+    if (ukuran) out.push(language === "en" ? `Size ${ukuran}` : "Ukuran " + ukuran);
     (p.opsi || []).forEach((g, i) => {
       const j = opsiIdx[i] === undefined ? 0 : opsiIdx[i];
-      if (g.pilihan && g.pilihan[j]) out.push(g.pilihan[j].t);
+      if (g.pilihan && g.pilihan[j]) out.push(language === "en" ? translateValue(g.pilihan[j].t) : g.pilihan[j].t);
     });
     return out;
   }
 
-  /* ══════════════════════ 2. PESAN PESANAN ══════════════════════ */
-  /* Rangkaian teks yang dikirim ke WhatsApp. Satu pesanan, satu pesan. */
   function pesanPesanan(p, opsiIdx, toneKey, ukuran, qty) {
+    if (language === "en") {
+      const variant = labelVarian(p, opsiIdx, toneKey, ukuran);
+      const lines = [`Hello KTUBA, I'd like to order ${translateValue(p.nama)}.`, "", `Quantity: ${qty} ${translateValue(p.unit)}`];
+      if (variant.length) lines.push(`Specifications: ${variant.join(" · ")}`);
+      lines.push(`Estimated price: ${rp(hitungTotal(p, opsiIdx, qty))}`, "", "Please confirm the final total and turnaround time. Thank you.");
+      return lines.join("\n");
+    }
     const baris = [
       `Halo KTUBA, saya mau pesan ${p.nama}.`,
       "",
@@ -108,10 +341,10 @@
     window.open(waHref(teks), "_blank", "noopener");
   }
 
-  /* ══════════════════════ 3. ILUSTRASI ══════════════════════ */
   const MOCK_INNER = {
     mug: '<span class="p p--handle"></span><span class="p p--print">KTUBA</span>',
     kaos: '<span class="p p--body"></span><span class="p p--collar"></span><span class="p p--print">K</span>',
+    kerudung: '<span class="p p--fold"></span><span class="p p--print">KT</span>',
     tote: '<span class="p p--handle p--handle--l"></span><span class="p p--handle p--handle--r"></span><span class="p p--print">KT</span>',
     pin: '<span class="p p--print">K</span>',
     gantungan: '<span class="p p--ring"></span><span class="p p--print">KTUBA</span>',
@@ -129,16 +362,10 @@
     return `<div class="mock" style="--tone:${tone};--print:${print}"><div class="scene"><div class="obj obj--${mockId}">${inner}</div></div></div>`;
   }
 
-  /* Foto 2D berwarna: satu plate abu-abu dipakai dua kali —
-     sebagai mask (bentuk kain) dan sebagai pengali (lipatan kain).
-     Hasilnya warna pilihan user dengan bayangan asli foto. */
   function fotoMarkup(f, tone, print) {
     const c = f.cetak || { x: 33, y: 46, w: 34, h: 26 };
     const url = `url('${f.src}')`;
-    /* Kain terang: multiply mempertahankan lipatan apa adanya.
-       Kain gelap: multiply menghapus semua lipatan jadi hitam rata, jadi
-       soft-light dipakai — plate yang sama menaikkan serat tanpa menaruh
-       lapisan cahaya di atas kain. */
+
     const gelap = lumaDari(tone) < 0.42;
     return `<div class="foto" style="--tone:${tone};--print:${print};--img:${url};--rasio:${f.rasio || 0.8}">
       <div class="foto-lantai" aria-hidden="true"></div>
@@ -150,10 +377,6 @@
     </div>`;
   }
 
-  /* Warna bisa berupa kunci di WARNA atau kode hex langsung (warna custom). */
-
-  /* Warna tinta cetak yang tetap terbaca di atas warna apa pun:
-     latar terang → vermillion, latar gelap → kertas. */
   function lumaDari(hex) {
     const n = parseInt(hex.slice(1), 16);
     const r = (n >> 16) & 255;
@@ -166,9 +389,6 @@
     return lumaDari(hex) > 0.56 ? "#FF4A1C" : "#FBF8F2";
   }
 
-  /* Ikon di dalam lingkaran swatch: bukan tinta cetak, jadi ambil yang paling
-     kontras mentah — tinta di atas warna terang, kertas di atas warna gelap.
-     Titik silang kontras sesungguhnya ada di luma ~0.28. */
   function tintaSwatch(hex) {
     return lumaDari(hex) > 0.32 ? "#111314" : "#FBF8F2";
   }
@@ -181,7 +401,6 @@
     return { tone: d.hex, print: d.print };
   }
 
-  /* Swatch preset + tombol custom. Dipakai drawer produk & konfigurator. */
   function swatchMarkup(keys, aktif) {
     const custom = HEX.test(aktif || "");
     const preset = keys
@@ -219,15 +438,12 @@
     input.click();
   }
 
-  /* ══════════════════════ 4. HEADER & KONTAK ══════════════════════ */
   const hdr = qs("#hdr");
   const burger = qs("#burger");
   const mobileNav = qs("#mobileNav");
 
-  /* Sembunyi saat menurun, muncul saat menaik. Ambang 8px mencegah
-     header berkedip karena scroll inersia di layar sentuh. */
   let lastY = window.scrollY;
-  let bebasSampai = 0; // jendela tenang setelah lompat ke anchor
+  let bebasSampai = 0;
 
   function setHidden(on) {
     hdr.classList.toggle("is-hidden", on);
@@ -254,7 +470,6 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  // lompat ke bagian lewat menu: header tidak ikut menyelinap saat meluncur
   qsa('a[href^="#"]').forEach((a) => {
     a.addEventListener("click", () => {
       bebasSampai = Date.now() + 800;
@@ -262,7 +477,6 @@
     });
   });
 
-  // keyboard: kalau fokus masuk ke header, header wajib kelihatan
   if (hdr)
     hdr.addEventListener("focusin", () => {
       bebasSampai = Date.now() + 400;
@@ -297,20 +511,27 @@
     qsa("a", mobileNav).forEach((a) => a.addEventListener("click", closeMobileNav));
   }
 
-  // Isi data kontak ke seluruh halaman
   qsa("[data-kontak]").forEach((el) => {
     const val = K()[el.dataset.kontak];
     if (val) el.textContent = val;
   });
-  qsa("[data-sejak]").forEach((el) => (el.textContent = K().sejak || "2019"));
+  qsa("[data-sejak]").forEach((el) => (el.textContent = K().sejak || "2023"));
 
   const waHref = (text) =>
     `https://wa.me/${K().wa}?text=${encodeURIComponent(text)}`;
 
   qsa("[data-wa-link]").forEach((a) => {
-    a.href = waHref("Halo KTUBA, saya mau tanya soal layanan cetak dan desain.");
+    a.href = waHref(language === "en"
+      ? "Hello KTUBA, I have a question about printing and design services."
+      : "Halo KTUBA, saya mau tanya soal layanan cetak dan desain.");
     a.target = "_blank";
     a.rel = "noopener";
+  });
+  qs("#langToggle")?.addEventListener("click", () => {
+    const message = language === "en"
+      ? "Hello KTUBA, I have a question about printing and design services."
+      : "Halo KTUBA, saya mau tanya soal layanan cetak dan desain.";
+    qsa("[data-wa-link]").forEach((a) => { a.href = waHref(message); });
   });
   qsa("[data-email-link]").forEach((a) => {
     a.href = `mailto:${K().email}?subject=${encodeURIComponent("Tanya layanan KTUBA")}`;
@@ -325,7 +546,6 @@
   const elNavKontak = qs("#mobileNavKontak");
   if (elNavKontak) elNavKontak.textContent = `${K().tampil} · ${K().jam}`;
 
-  /* ══════════════════════ 5. TICKER ══════════════════════ */
   const tickerTrack = qs("#tickerTrack");
   if (tickerTrack) {
     const nama = D().map((p) => p.nama.toUpperCase());
@@ -333,9 +553,16 @@
     tickerTrack.innerHTML = set
       .map((n) => `<span class="ticker-item"><span>${n}</span><i>✦</i></span>`)
       .join("");
+    const ticker = tickerTrack.closest(".ticker");
+    if (ticker && "IntersectionObserver" in window) {
+      new IntersectionObserver(([entry]) => {
+        ticker.classList.toggle("is-in-view", entry.isIntersecting);
+      }).observe(ticker);
+    } else {
+      ticker?.classList.add("is-in-view");
+    }
   }
 
-  /* ══════════════════════ 6. STATS ══════════════════════ */
   const statsList = qs("#statsList");
   if (statsList && typeof STATS !== "undefined") {
     statsList.innerHTML = STATS.map(
@@ -370,7 +597,6 @@
     qsa(".count", statsList).forEach((c) => ioNum.observe(c));
   }
 
-  /* ══════════════════════ 7. KOLASE HERO ══════════════════════ */
   (function collage() {
     const slots = { collageA: 0, collageB: 1, collageC: 2 };
     const p = D();
@@ -406,7 +632,6 @@
     });
   })();
 
-  /* ══════════════════════ 8. KATALOG ══════════════════════ */
   const filterBar = qs("#filterBar");
   const catalogGrid = qs("#catalogGrid");
   let activeCat = "semua";
@@ -426,8 +651,7 @@
           <button class="card-hit" type="button" data-open="${p.id}" aria-label="Lihat detail ${p.nama}">
             <div class="media">
               ${mockMarkup(p, t.tone, t.print)}
-              <!-- Pratinjau diambil dari kunci foto di produk.js (plate di assets/preview).
-                   Foto katalog di assets/produk terpisah — jangan dipakai di sini. -->
+
             </div>
           </button>
           <div class="card-body">
@@ -472,7 +696,6 @@
     });
   }
 
-  // Satu delegasi global untuk membuka drawer produk
   document.addEventListener("click", (e) => {
     const trigger = e.target.closest("[data-open]");
     if (trigger) {
@@ -483,7 +706,6 @@
 
   renderCatalog();
 
-  /* ══════════════════════ 9. DRAWER ══════════════════════ */
   const scrim = qs("#scrim");
   const drawer = qs("#drawer");
   let lastFocus = null;
@@ -520,7 +742,6 @@
       scrim.classList.add("is-open");
     }
 
-    // paksa flush gaya supaya transisi benar-benar berjalan
     void el.offsetHeight;
     void (scrim && scrim.offsetHeight);
 
@@ -567,7 +788,6 @@
     });
   }
 
-  // — state drawer produk —
   const drawerEls = {
     media: qs("#drawerMedia"),
     title: qs("#drawerTitle"),
@@ -587,7 +807,7 @@
     close: qs("#drawerClose"),
   };
 
-  let st = null; // { p, toneKey, opsi, ukuran, qty }
+  let st = null;
 
   function clampQty(v) {
     const min = (st && st.p.moq) || 1;
@@ -632,7 +852,6 @@
     drawerEls.kicker.textContent = LABEL_KAT[p.kategori] || "Detail produk";
     drawerEls.qtyInput.value = st.qty;
 
-    // warna
     drawerEls.warna.innerHTML = swatchMarkup(p.warna || [], st.toneKey);
 
     drawerEls.warna.onclick = (e) => {
@@ -648,7 +867,6 @@
       if (customButton) openCustomColorPicker(customButton);
     };
 
-    // warna custom — input berjalan selama pemilih warna digeser
     drawerEls.warna.oninput = (e) => {
       const inp = e.target.closest('input[type="color"]');
       if (!inp) return;
@@ -662,7 +880,6 @@
       paintDrawer();
     };
 
-    // opsi
     drawerEls.opsi.innerHTML = (p.opsi || [])
       .map(
         (g, gi) => `
@@ -693,7 +910,6 @@
       paintDrawer();
     };
 
-    // ukuran
     if (p.ukuran && p.ukuran.length) {
       drawerEls.ukuranField.hidden = false;
       drawerEls.ukuran.innerHTML = p.ukuran
@@ -713,7 +929,6 @@
       drawerEls.ukuran.innerHTML = "";
     }
 
-    // jumlah
     drawerEls.qty.onclick = (e) => {
       const b = e.target.closest("[data-step]");
       if (!b) return;
@@ -727,7 +942,6 @@
       paintDrawer();
     };
 
-    // pesan via WhatsApp
     drawerEls.order.onclick = () => {
       if (!st || !st.p) return;
       const teks = pesanPesanan(st.p, st.opsi, st.toneKey, st.ukuran, st.qty);
@@ -740,7 +954,6 @@
 
   if (drawerEls.close) drawerEls.close.addEventListener("click", () => closePanelFn(drawer));
 
-  /* ══════════════════════ 10. KONFIGURATOR ══════════════════════ */
   (function konfigurator() {
     const root = qs("#konfigProduk");
     if (!root) return;
@@ -868,7 +1081,6 @@
       if (customButton) openCustomColorPicker(customButton);
     });
 
-    // warna custom — input berjalan selama pemilih warna digeser
     els.warna.addEventListener("input", (e) => {
       const inp = e.target.closest('input[type="color"]');
       if (!inp) return;
@@ -924,7 +1136,6 @@
     paint();
   })();
 
-  /* ══════════════════════ 11. GALERI ══════════════════════ */
   const galeriGrid = qs("#galeriGrid");
   if (galeriGrid && typeof GALERI !== "undefined") {
     galeriGrid.innerHTML = GALERI.map((g, i) => {
@@ -945,8 +1156,6 @@
     }).join("");
   }
 
-  /* ══════════════════════ 12. REVEAL ══════════════════════ */
-  // Tandai elemen statis sebagai reveal
   qsa(".sec-head, .hero-copy > *, .cta-inner > *, .card-ulasan, .bento-cell, .faq-item").forEach((el, i) => {
     el.classList.add("reveal");
     el.style.setProperty("--d", (i % 6) * 50 + "ms");
@@ -968,7 +1177,6 @@
     ).observe(steps);
   }
 
-  /* ══════════════════════ 13. MAGNETIC ══════════════════════ */
   if (!reduce && window.matchMedia("(min-width: 901px)").matches) {
     qsa(".btn--ink, .btn--accent, .btn--paper").forEach((btn) => {
       btn.addEventListener("mousemove", (e) => {
@@ -983,6 +1191,4 @@
     });
   }
 
-  /* ══════════════════════ 14. BOOT ══════════════════════ */
-  /* Reveal awal sudah dipanggil di modul 12. */
 })();
