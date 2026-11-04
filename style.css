@@ -1033,10 +1033,10 @@ svg {
   place-items: center;
   background: radial-gradient(
       115% 85% at 26% 8%,
-      #fffdf7 0%,
-      rgba(255, 253, 247, 0) 58%
+      #ded2b8 0%,
+      rgba(222, 210, 184, 0) 58%
     ),
-    linear-gradient(165deg, #f1ebde 0%, #e3dbc9 100%);
+    linear-gradient(165deg, #cdbfa1 0%, #b8ab8c 100%);
 }
 
 .scene::after {
@@ -1050,6 +1050,89 @@ svg {
   background: rgba(17, 19, 20, 0.17);
   filter: blur(6px);
   transform: translateX(-50%);
+}
+
+/* ------------------------------------------------------------
+   FOTO PRODUK 2D
+   Plate abu-abu dipakai dua kali: sebagai mask (bentuk kain) dan
+   sebagai pengali (lipatan kain). Satu elemen, tanpa aset kedua.
+   ------------------------------------------------------------ */
+.foto {
+  position: absolute;
+  inset: 0;
+  container-type: size;
+  overflow: hidden;
+  background: radial-gradient(
+      115% 85% at 26% 8%,
+      #ded2b8 0%,
+      rgba(222, 210, 184, 0) 58%
+    ),
+    linear-gradient(165deg, #cdbfa1 0%, #b8ab8c 100%);
+}
+
+.foto-panggung {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.foto-objek {
+  position: relative;
+  /* Pas di kedua sumbu: 92% lebar, tapi tidak pernah lebih tinggi dari 92%.
+     aspect-ratio menjaga benda tidak gepeng di panggung mana pun. */
+  width: min(92cqi, 92cqb * var(--rasio, 0.8));
+  aspect-ratio: var(--rasio, 0.8);
+  container-type: inline-size;
+  background-color: var(--tone);
+  background-image: var(--img);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-blend-mode: var(--blend, multiply);
+  -webkit-mask-image: var(--img);
+  mask-image: var(--img);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  /* bayangan mengikuti siluet benda — ini yang memisahkan benda dari latar.
+     Tetap: benda tidak bergerak saat kursor menunjuk. */
+  filter: drop-shadow(0 9px 13px rgba(17, 19, 20, 0.22));
+}
+
+.foto-lantai {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  width: 56%;
+  height: 9%;
+  border-radius: 50%;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(17, 19, 20, 0.32),
+    rgba(17, 19, 20, 0) 72%
+  );
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.foto-cetak {
+  position: absolute;
+  left: var(--cx, 33%);
+  top: var(--cy, 46%);
+  width: var(--cw, 34%);
+  height: var(--ch, 26%);
+  display: grid;
+  place-items: center;
+  color: var(--print);
+  font-family: "Bricolage", sans-serif;
+  font-size: 9.6cqw;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  mix-blend-mode: var(--blend-cetak, multiply);
+  pointer-events: none;
 }
 
 .obj {
@@ -1602,31 +1685,38 @@ svg {
   border-color: var(--ink);
 }
 
-/* Tombol berikon palet membuka pemilih warna bawaan sistem. */
+/* Tombol berikon eyedropper membuka pemilih warna bawaan sistem.
+   Diam: lingkaran putus-putus kosong. Sudah dipilih: lingkaran penuh
+   warna itu, ikonnya dibalik ke warna kontras supaya tetap terbaca. */
 .swatch-custom-wrap {
   position: relative;
   display: inline-flex;
-  flex: 0 0 44px;
-  width: 44px;
-  height: 44px;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
 }
 
 .swatch--custom {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   padding: 0;
-  border-color: var(--line);
-  background: var(--paper-2);
-  color: var(--ink);
+  border: 1.5px dashed var(--line-d);
+  background: transparent;
+  color: var(--muted);
   cursor: pointer;
   isolation: isolate;
 }
 
 .swatch--custom svg {
-  width: 23px;
-  height: 23px;
+  width: 18px;
+  height: 18px;
+}
+
+.swatch--custom:hover {
+  border-color: var(--ink);
+  color: var(--ink);
 }
 
 .swatch-custom-input {
@@ -1640,24 +1730,57 @@ svg {
   clip-path: inset(50%);
 }
 
+.swatch--custom.is-active {
+  border-style: solid;
+  border-color: transparent;
+  background: var(--sw);
+  color: var(--sw-ink, var(--ink));
+}
+
+.swatch--custom.is-active:hover {
+  border-color: transparent;
+  color: var(--sw-ink, var(--ink));
+}
+
 .swatch--custom.is-active::after {
   border-color: var(--ink);
+}
+
+/* Drawer berlatar kertas: `.field--dark .swatch` memaksa garis jadi `--line`
+   yang nyaris hilang. Kembalikan garis putus-putusnya supaya tetap terbaca
+   sebagai tombol tanpa berteriak. */
+.field--dark .swatch--custom {
+  border-color: rgba(17, 19, 20, 0.4);
+}
+
+/* Panel konfigurator berlatar tinta: garis putus-putus dan ikon ikut terang.
+   Drawer tetap pakai warna dasar di atas karena latarnya kertas. */
+.konfig .swatch--custom {
+  border-color: rgba(251, 248, 242, 0.34);
+  color: rgba(251, 248, 242, 0.72);
+}
+
+.konfig .swatch--custom:hover {
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
+.konfig .swatch--custom.is-active {
+  border-color: transparent;
+  color: var(--sw-ink, var(--paper));
+}
+
+.konfig .swatch--custom.is-active:hover {
+  border-color: transparent;
+  color: var(--sw-ink, var(--paper));
 }
 
 .konfig .swatch--custom.is-active::after {
   border-color: var(--paper);
 }
 
-.field--dark .swatch--custom.is-active::after {
-  border-color: var(--ink);
-}
-
 .konfig .swatch--custom:focus-visible {
   outline-color: var(--lime);
-}
-
-.field--dark .swatch--custom:focus-visible {
-  outline-color: var(--ink);
 }
 
 .stepper {
