@@ -1,22 +1,5 @@
-/* ============================================================
-   KTUBA — PUSAT DATA
-   ------------------------------------------------------------
-   Ini satu-satunya file yang perlu kamu ubah untuk mengganti
-   produk, harga, pilihan bahan, dan kontak.
-
-   ATURAN HARGA
-   - `mulai`  : harga dasar per unit (Rp), sebelum tambahan opsi
-   - `opsi[]` : grup pilihan. `d` = tambahan harga per unit (Rp)
-   - `diskon` : potongan otomatis berdasarkan jumlah
-   Total dihitung: (mulai + semua tambahan) x qty, lalu dipotong diskon.
-   ============================================================ */
-
-/* ------------------------------------------------------------
-   1. KONTAK  ←  WAJIB DIGANTI SEBELUM DIPAKAI
-   ------------------------------------------------------------ */
 const KONTAK = {
-  // Nomor WhatsApp, HANYA ANGKA, tanpa +, spasi, atau tanda hubung.
-  // Contoh: 6281234567890  (08xx menjadi 628xx)
+
   wa: "6285191241410",
   tampil: "0851-9124-1410",
   email: "halo@ktuba.id",
@@ -24,14 +7,9 @@ const KONTAK = {
   maps: "https://maps.google.com/?q=SMK+Negeri+1+Bantul,+Jl.+Parangtritis+KM+11,+Sabdodadi,+Bantul,+DIY",
   jam: "Senin\u2013Jumat \u00B7 08.00\u201315.00 WIB",
   instagram: "@ktubadigital",
-  sejak: "2019",
+  sejak: "2023",
 };
 
-/* ------------------------------------------------------------
-   2. PALET WARNA PRODUK
-   `hex`   = warna benda pada ilustrasi
-   `print` = warna hasil cetak di atas benda tersebut
-   ------------------------------------------------------------ */
 const WARNA = {
   putih: { nama: "Putih", hex: "#FCFBF7", print: "#FF4A1C" },
   natural: { nama: "Natural", hex: "#EFE9DC", print: "#111314" },
@@ -43,9 +21,6 @@ const WARNA = {
   kraft: { nama: "Kraft", hex: "#C89B6A", print: "#111314" },
 };
 
-/* ------------------------------------------------------------
-   3. KATEGORI (urutannya mengikuti tab filter)
-   ------------------------------------------------------------ */
 const KATEGORI = [
   { id: "semua", label: "Semua" },
   { id: "merch", label: "Merchandise" },
@@ -53,19 +28,13 @@ const KATEGORI = [
   { id: "desain", label: "Desain" },
 ];
 
-/* ------------------------------------------------------------
-   4. KATALOG PRODUK
-   `mock` menentukan bentuk ilustrasi: mug | kaos | tote | pin |
-   gantungan | dokumen | spanduk | desain
-   ------------------------------------------------------------ */
 const PRODUK = [
   {
     id: "mug",
     nama: "Mug Custom",
     kategori: "merch",
     mock: "mug",
-    /* Foto 2D: plate abu-abu (alpha = bentuk benda) diwarnai lewat CSS.
-       cetak = kotak sablon dalam persen dari plate. */
+
     foto: {
       src: "assets/preview/mug-plate.webp",
       rasio: 1.0838,
@@ -98,8 +67,7 @@ const PRODUK = [
     nama: "Kaos Custom",
     kategori: "merch",
     mock: "kaos",
-    /* Foto 2D: plate abu-abu (alpha = bentuk kain) diwarnai lewat CSS.
-       cetak = kotak sablon dalam persen dari plate. */
+
     foto: {
       src: "assets/preview/kaos-plate.webp",
       rasio: 0.8602,
@@ -361,7 +329,7 @@ const PRODUK = [
     id: "jilbab",
     nama: "Jilbab Custom",
     kategori: "merch",
-    mock: "kaos",
+    mock: "kerudung",
     tag: null,
     ringkas: "Bahan Polino, ukuran 115 cm, cetak DTF full color.",
     mulai: 40000,
@@ -514,23 +482,17 @@ const PRODUK = [
   },
 ];
 
-/* ------------------------------------------------------------
-   5. GALERI HASIL — pakai id produk + keterangan
-   ------------------------------------------------------------ */
 const GALERI = [
   { produk: "kaos", gambar: "kaos.jpeg", label: "Kaos komunitas · 48 pcs", warna: "navy" },
-  { produk: "mug", gambar: "3-mug.jpg", label: "Mug kafe · 60 pcs", warna: "putih" },
-  { produk: "totebag", gambar: "tothebag.jpeg", label: "Totebag seminar · 120 pcs", warna: "natural" },
   { produk: "spanduk", gambar: "banner.jpeg", label: "Spanduk toko · 4 × 1 m", warna: "vermillion" },
-  { produk: "pin", gambar: "pin.jpg", label: "Pin acara · 250 pcs", warna: "lime" },
-  { produk: "gantungan", gambar: "gantungan-kunci.jpg", label: "Gantungan suvenir · 100 pcs", warna: "hitam" },
-  { gambar: "stempel.jpg", label: "Stempel" },
-  { gambar: "krudung.jpg", label: "Kerudung" },
+  { produk: "mug", gambar: "optimized/3-mug.jpg", label: "Mug kafe · 60 pcs", warna: "putih" },
+  { produk: "totebag", gambar: "tothebag.jpeg", label: "Totebag seminar · 120 pcs", warna: "natural" },
+  { produk: "pin", gambar: "optimized/pin.jpg", label: "Pin acara · 250 pcs", warna: "lime" },
+  { produk: "gantungan", gambar: "optimized/gantungan-kunci.jpg", label: "Gantungan suvenir · 100 pcs", warna: "hitam" },
+  { gambar: "optimized/stempel.jpg", label: "Stempel" },
+  { gambar: "optimized/krudung.jpg", label: "Kerudung" },
 ];
 
-/* ------------------------------------------------------------
-   6. ANIMASI ANGKA — dihitung oleh script.js
-   ------------------------------------------------------------ */
 const STATS = [
   { angka: 1240, suffix: "+", label: "Pesanan selesai" },
   { angka: 3, suffix: " hari", label: "Rata-rata pengerjaan" },

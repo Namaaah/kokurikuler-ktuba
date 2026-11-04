@@ -1,14 +1,6 @@
-/* ============================================================
-   KTUBA — script.js
-   Vanilla JS, tanpa dependensi.
-   Modul: pemesanan WhatsApp, drawer, konfigurator,
-   filter katalog, marquee, counter, scroll-reveal.
-   ============================================================ */
-
 (function () {
   "use strict";
 
-  /* ── helper ─────────────────────────────────────────────── */
   const qs = (s, c = document) => c.querySelector(s);
   const qsa = (s, c = document) => Array.from(c.querySelectorAll(s));
   const rp = (n) => language === "en"
@@ -42,6 +34,7 @@
     "Hitung cepat": "Quick estimate", "Berapa totalnya?": "What's the total?",
     "Ubah bahan, warna, dan jumlah — harga serta ilustrasinya ikut berubah.": "Change the material, color, and quantity—the price and preview update with your choices.",
     "Produk": "Product", "Warna": "Color", "Ukuran": "Size", "Jumlah": "Quantity", "Jumlah pesanan": "Order quantity",
+    "Catatan: warna yang dipilih hanya mengubah ilustrasi pratinjau, bukan warna desain atau cetakan akhir.": "Note: the selected color changes the product preview only, not the final design or print color.",
     "Kurangi jumlah": "Decrease quantity", "Tambah jumlah": "Increase quantity",
     "Estimasi": "Estimate", "Perkiraan total": "Estimated total", "Pesan via WhatsApp": "Order on WhatsApp",
     "Alur kerja": "How it works", "Dari file mentah": "From your first idea",
@@ -258,8 +251,6 @@
   const W = () => (typeof WARNA !== "undefined" ? WARNA : {});
   const K = () => (typeof KONTAK !== "undefined" ? KONTAK : { wa: "6285191241410", email: "halo@ktuba.id" });
 
-  /* Observer reveal — dibuat sekali, malas, supaya bisa dipanggil
-     dari modul mana pun tanpa urutan inisialisasi. */
   let ioReveal = null;
   function observeReveals() {
     if (!ioReveal) {
@@ -277,8 +268,6 @@
     qsa(".reveal:not(.is-in)").forEach((el) => ioReveal.observe(el));
   }
 
-
-  /* ══════════════════════ 1. HARGA ══════════════════════ */
   function hitungSatuan(p, opsiIdx) {
     let satuan = p.mulai;
     (p.opsi || []).forEach((g, i) => {
@@ -325,8 +314,6 @@
     return out;
   }
 
-  /* ══════════════════════ 2. PESAN PESANAN ══════════════════════ */
-  /* Rangkaian teks yang dikirim ke WhatsApp. Satu pesanan, satu pesan. */
   function pesanPesanan(p, opsiIdx, toneKey, ukuran, qty) {
     if (language === "en") {
       const variant = labelVarian(p, opsiIdx, toneKey, ukuran);
@@ -354,10 +341,10 @@
     window.open(waHref(teks), "_blank", "noopener");
   }
 
-  /* ══════════════════════ 3. ILUSTRASI ══════════════════════ */
   const MOCK_INNER = {
     mug: '<span class="p p--handle"></span><span class="p p--print">KTUBA</span>',
     kaos: '<span class="p p--body"></span><span class="p p--collar"></span><span class="p p--print">K</span>',
+    kerudung: '<span class="p p--fold"></span><span class="p p--print">KT</span>',
     tote: '<span class="p p--handle p--handle--l"></span><span class="p p--handle p--handle--r"></span><span class="p p--print">KT</span>',
     pin: '<span class="p p--print">K</span>',
     gantungan: '<span class="p p--ring"></span><span class="p p--print">KTUBA</span>',
@@ -375,16 +362,10 @@
     return `<div class="mock" style="--tone:${tone};--print:${print}"><div class="scene"><div class="obj obj--${mockId}">${inner}</div></div></div>`;
   }
 
-  /* Foto 2D berwarna: satu plate abu-abu dipakai dua kali —
-     sebagai mask (bentuk kain) dan sebagai pengali (lipatan kain).
-     Hasilnya warna pilihan user dengan bayangan asli foto. */
   function fotoMarkup(f, tone, print) {
     const c = f.cetak || { x: 33, y: 46, w: 34, h: 26 };
     const url = `url('${f.src}')`;
-    /* Kain terang: multiply mempertahankan lipatan apa adanya.
-       Kain gelap: multiply menghapus semua lipatan jadi hitam rata, jadi
-       soft-light dipakai — plate yang sama menaikkan serat tanpa menaruh
-       lapisan cahaya di atas kain. */
+
     const gelap = lumaDari(tone) < 0.42;
     return `<div class="foto" style="--tone:${tone};--print:${print};--img:${url};--rasio:${f.rasio || 0.8}">
       <div class="foto-lantai" aria-hidden="true"></div>
@@ -396,10 +377,6 @@
     </div>`;
   }
 
-  /* Warna bisa berupa kunci di WARNA atau kode hex langsung (warna custom). */
-
-  /* Warna tinta cetak yang tetap terbaca di atas warna apa pun:
-     latar terang → vermillion, latar gelap → kertas. */
   function lumaDari(hex) {
     const n = parseInt(hex.slice(1), 16);
     const r = (n >> 16) & 255;
@@ -412,9 +389,6 @@
     return lumaDari(hex) > 0.56 ? "#FF4A1C" : "#FBF8F2";
   }
 
-  /* Ikon di dalam lingkaran swatch: bukan tinta cetak, jadi ambil yang paling
-     kontras mentah — tinta di atas warna terang, kertas di atas warna gelap.
-     Titik silang kontras sesungguhnya ada di luma ~0.28. */
   function tintaSwatch(hex) {
     return lumaDari(hex) > 0.32 ? "#111314" : "#FBF8F2";
   }
@@ -427,7 +401,6 @@
     return { tone: d.hex, print: d.print };
   }
 
-  /* Swatch preset + tombol custom. Dipakai drawer produk & konfigurator. */
   function swatchMarkup(keys, aktif) {
     const custom = HEX.test(aktif || "");
     const preset = keys
@@ -465,15 +438,12 @@
     input.click();
   }
 
-  /* ══════════════════════ 4. HEADER & KONTAK ══════════════════════ */
   const hdr = qs("#hdr");
   const burger = qs("#burger");
   const mobileNav = qs("#mobileNav");
 
-  /* Sembunyi saat menurun, muncul saat menaik. Ambang 8px mencegah
-     header berkedip karena scroll inersia di layar sentuh. */
   let lastY = window.scrollY;
-  let bebasSampai = 0; // jendela tenang setelah lompat ke anchor
+  let bebasSampai = 0;
 
   function setHidden(on) {
     hdr.classList.toggle("is-hidden", on);
@@ -500,7 +470,6 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  // lompat ke bagian lewat menu: header tidak ikut menyelinap saat meluncur
   qsa('a[href^="#"]').forEach((a) => {
     a.addEventListener("click", () => {
       bebasSampai = Date.now() + 800;
@@ -508,7 +477,6 @@
     });
   });
 
-  // keyboard: kalau fokus masuk ke header, header wajib kelihatan
   if (hdr)
     hdr.addEventListener("focusin", () => {
       bebasSampai = Date.now() + 400;
@@ -543,12 +511,11 @@
     qsa("a", mobileNav).forEach((a) => a.addEventListener("click", closeMobileNav));
   }
 
-  // Isi data kontak ke seluruh halaman
   qsa("[data-kontak]").forEach((el) => {
     const val = K()[el.dataset.kontak];
     if (val) el.textContent = val;
   });
-  qsa("[data-sejak]").forEach((el) => (el.textContent = K().sejak || "2019"));
+  qsa("[data-sejak]").forEach((el) => (el.textContent = K().sejak || "2023"));
 
   const waHref = (text) =>
     `https://wa.me/${K().wa}?text=${encodeURIComponent(text)}`;
@@ -579,7 +546,6 @@
   const elNavKontak = qs("#mobileNavKontak");
   if (elNavKontak) elNavKontak.textContent = `${K().tampil} · ${K().jam}`;
 
-  /* ══════════════════════ 5. TICKER ══════════════════════ */
   const tickerTrack = qs("#tickerTrack");
   if (tickerTrack) {
     const nama = D().map((p) => p.nama.toUpperCase());
@@ -587,9 +553,16 @@
     tickerTrack.innerHTML = set
       .map((n) => `<span class="ticker-item"><span>${n}</span><i>✦</i></span>`)
       .join("");
+    const ticker = tickerTrack.closest(".ticker");
+    if (ticker && "IntersectionObserver" in window) {
+      new IntersectionObserver(([entry]) => {
+        ticker.classList.toggle("is-in-view", entry.isIntersecting);
+      }).observe(ticker);
+    } else {
+      ticker?.classList.add("is-in-view");
+    }
   }
 
-  /* ══════════════════════ 6. STATS ══════════════════════ */
   const statsList = qs("#statsList");
   if (statsList && typeof STATS !== "undefined") {
     statsList.innerHTML = STATS.map(
@@ -624,19 +597,19 @@
     qsa(".count", statsList).forEach((c) => ioNum.observe(c));
   }
 
-  /* ══════════════════════ 7. KOLASE HERO ══════════════════════ */
   (function collage() {
-    // Foto hero: kaos, mug, totebag dari assets/produk
+
     const heroFotos = [
       { src: "assets/produk/kaos.jpeg",    alt: "Kaos custom KTUBA" },
-      { src: "assets/produk/3-mug.jpg",    alt: "Mug custom KTUBA" },
+      { src: "assets/produk/optimized/3-mug.jpg", alt: "Mug custom KTUBA" },
       { src: "assets/produk/tothebag.jpeg", alt: "Totebag custom KTUBA" },
     ];
     ["collageA", "collageB", "collageC"].forEach((id, i) => {
       const host = qs("#" + id);
       if (!host) return;
       const f = heroFotos[i];
-      host.innerHTML = `<img src="${f.src}" alt="${f.alt}" style="width:100%;height:100%;object-fit:cover;display:block;">`;
+      const loading = i === 0 ? 'fetchpriority="high"' : 'loading="lazy"';
+      host.innerHTML = `<img src="${f.src}" alt="${f.alt}" decoding="async" ${loading} style="width:100%;height:100%;object-fit:cover;display:block;">`;
     });
 
     const col = qs("#collage");
@@ -662,7 +635,6 @@
     });
   })();
 
-  /* ══════════════════════ 8. KATALOG ══════════════════════ */
   const filterBar = qs("#filterBar");
   const catalogGrid = qs("#catalogGrid");
   let activeCat = "semua";
@@ -682,8 +654,7 @@
           <button class="card-hit" type="button" data-open="${p.id}" aria-label="Lihat detail ${p.nama}">
             <div class="media">
               ${mockMarkup(p, t.tone, t.print)}
-              <!-- Pratinjau diambil dari kunci foto di produk.js (plate di assets/preview).
-                   Foto katalog di assets/produk terpisah — jangan dipakai di sini. -->
+
             </div>
           </button>
           <div class="card-body">
@@ -728,7 +699,6 @@
     });
   }
 
-  // Satu delegasi global untuk membuka drawer produk
   document.addEventListener("click", (e) => {
     const trigger = e.target.closest("[data-open]");
     if (trigger) {
@@ -739,7 +709,6 @@
 
   renderCatalog();
 
-  /* ══════════════════════ 9. DRAWER ══════════════════════ */
   const scrim = qs("#scrim");
   const drawer = qs("#drawer");
   let lastFocus = null;
@@ -776,7 +745,6 @@
       scrim.classList.add("is-open");
     }
 
-    // paksa flush gaya supaya transisi benar-benar berjalan
     void el.offsetHeight;
     void (scrim && scrim.offsetHeight);
 
@@ -823,7 +791,6 @@
     });
   }
 
-  // — state drawer produk —
   const drawerEls = {
     media: qs("#drawerMedia"),
     title: qs("#drawerTitle"),
@@ -843,7 +810,7 @@
     close: qs("#drawerClose"),
   };
 
-  let st = null; // { p, toneKey, opsi, ukuran, qty }
+  let st = null;
 
   function clampQty(v) {
     const min = (st && st.p.moq) || 1;
@@ -888,7 +855,6 @@
     drawerEls.kicker.textContent = LABEL_KAT[p.kategori] || "Detail produk";
     drawerEls.qtyInput.value = st.qty;
 
-    // warna
     drawerEls.warna.innerHTML = swatchMarkup(p.warna || [], st.toneKey);
 
     drawerEls.warna.onclick = (e) => {
@@ -904,7 +870,6 @@
       if (customButton) openCustomColorPicker(customButton);
     };
 
-    // warna custom — input berjalan selama pemilih warna digeser
     drawerEls.warna.oninput = (e) => {
       const inp = e.target.closest('input[type="color"]');
       if (!inp) return;
@@ -918,7 +883,6 @@
       paintDrawer();
     };
 
-    // opsi
     drawerEls.opsi.innerHTML = (p.opsi || [])
       .map(
         (g, gi) => `
@@ -949,7 +913,6 @@
       paintDrawer();
     };
 
-    // ukuran
     if (p.ukuran && p.ukuran.length) {
       drawerEls.ukuranField.hidden = false;
       drawerEls.ukuran.innerHTML = p.ukuran
@@ -969,7 +932,6 @@
       drawerEls.ukuran.innerHTML = "";
     }
 
-    // jumlah
     drawerEls.qty.onclick = (e) => {
       const b = e.target.closest("[data-step]");
       if (!b) return;
@@ -983,7 +945,6 @@
       paintDrawer();
     };
 
-    // pesan via WhatsApp
     drawerEls.order.onclick = () => {
       if (!st || !st.p) return;
       const teks = pesanPesanan(st.p, st.opsi, st.toneKey, st.ukuran, st.qty);
@@ -996,7 +957,6 @@
 
   if (drawerEls.close) drawerEls.close.addEventListener("click", () => closePanelFn(drawer));
 
-  /* ══════════════════════ 10. KONFIGURATOR ══════════════════════ */
   (function konfigurator() {
     const root = qs("#konfigProduk");
     if (!root) return;
@@ -1124,7 +1084,6 @@
       if (customButton) openCustomColorPicker(customButton);
     });
 
-    // warna custom — input berjalan selama pemilih warna digeser
     els.warna.addEventListener("input", (e) => {
       const inp = e.target.closest('input[type="color"]');
       if (!inp) return;
@@ -1180,7 +1139,6 @@
     paint();
   })();
 
-  /* ══════════════════════ 11. GALERI ══════════════════════ */
   const galeriGrid = qs("#galeriGrid");
   if (galeriGrid && typeof GALERI !== "undefined") {
     galeriGrid.innerHTML = GALERI.map((g, i) => {
@@ -1201,8 +1159,6 @@
     }).join("");
   }
 
-  /* ══════════════════════ 12. REVEAL ══════════════════════ */
-  // Tandai elemen statis sebagai reveal
   qsa(".sec-head, .hero-copy > *, .cta-inner > *, .card-ulasan, .bento-cell, .faq-item").forEach((el, i) => {
     el.classList.add("reveal");
     el.style.setProperty("--d", (i % 6) * 50 + "ms");
@@ -1224,7 +1180,6 @@
     ).observe(steps);
   }
 
-  /* ══════════════════════ 13. MAGNETIC ══════════════════════ */
   if (!reduce && window.matchMedia("(min-width: 901px)").matches) {
     qsa(".btn--ink, .btn--accent, .btn--paper").forEach((btn) => {
       btn.addEventListener("mousemove", (e) => {
@@ -1239,6 +1194,4 @@
     });
   }
 
-  /* ══════════════════════ 14. BOOT ══════════════════════ */
-  /* Reveal awal sudah dipanggil di modul 12. */
 })();

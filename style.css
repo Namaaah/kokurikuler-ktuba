@@ -1,8 +1,3 @@
-/* ============================================================
-   KTUBA ΓÇö style.css
-   Design system: kertas hangat + tinta + vermillion
-   ============================================================ */
-
 @font-face {
   font-family: "Bricolage";
   src: url("assets/fonts/bricolage-grotesque-latin.woff2") format("woff2");
@@ -19,9 +14,6 @@
   font-display: swap;
 }
 
-/* ------------------------------------------------------------
-   TOKENS
-   ------------------------------------------------------------ */
 :root {
   color-scheme: light;
 
@@ -61,9 +53,6 @@
   text-rendering: optimizeLegibility;
 }
 
-/* ------------------------------------------------------------
-   RESET
-   ------------------------------------------------------------ */
 *,
 *::before,
 *::after {
@@ -97,7 +86,6 @@ body.is-locked {
   overflow: hidden;
 }
 
-/* Grain halus di atas seluruh halaman */
 body::before {
   content: "";
   position: fixed;
@@ -268,9 +256,6 @@ svg {
   transform: translateY(0);
 }
 
-/* ------------------------------------------------------------
-   TIPOGRAFI DASAR
-   ------------------------------------------------------------ */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -333,9 +318,6 @@ svg {
   font-size: 0.86em;
 }
 
-/* ------------------------------------------------------------
-   TOMBOL
-   ------------------------------------------------------------ */
 .btn {
   position: relative;
   display: inline-flex;
@@ -470,9 +452,6 @@ svg {
   color: var(--vermillion);
 }
 
-/* ------------------------------------------------------------
-   HEADER
-   ------------------------------------------------------------ */
 .hdr {
   position: fixed;
   top: 0;
@@ -499,12 +478,10 @@ svg {
   background: rgba(251, 248, 242, 0.8);
 }
 
-/* geser ke bawah: header pergi. geser ke atas: kembali. */
 .hdr.is-hidden {
   transform: translateY(-101%);
 }
 
-/* tanpa blur, latar transparan bikin teks tabrak isi halaman */
 @supports not ((backdrop-filter: blur(6px)) or (-webkit-backdrop-filter: blur(6px))) {
   .hdr {
     background: rgba(251, 248, 242, 0.94);
@@ -603,7 +580,6 @@ svg {
   transform: translateY(-2.75px) rotate(-45deg);
 }
 
-/* Menu mobile */
 .mobile-nav {
   position: fixed;
   inset: 0;
@@ -657,9 +633,6 @@ svg {
   color: var(--muted);
 }
 
-/* ------------------------------------------------------------
-   HERO
-   ------------------------------------------------------------ */
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
@@ -725,7 +698,6 @@ svg {
   box-shadow: 0 0 0 1px rgba(17, 19, 20, 0.28);
 }
 
-/* Kolase hero */
 .collage {
   position: relative;
   width: 100%;
@@ -769,7 +741,6 @@ svg {
   transition: transform 0.5s var(--ease);
 }
 
-/* saat kursor bergerak, transisi dimatikan agar tidak tertinggal */
 .collage.is-moving .float-card {
   transition: none;
 }
@@ -802,9 +773,6 @@ svg {
   transform: rotate(-2deg);
 }
 
-/* ------------------------------------------------------------
-   TICKER
-   ------------------------------------------------------------ */
 .ticker {
   overflow: hidden;
   border-block: 1.5px solid var(--ink);
@@ -816,6 +784,11 @@ svg {
   display: flex;
   width: max-content;
   animation: marquee 34s linear infinite;
+  animation-play-state: paused;
+}
+
+.ticker.is-in-view:not(:hover) .ticker-track {
+  animation-play-state: running;
 }
 
 .ticker:hover .ticker-track {
@@ -845,9 +818,6 @@ svg {
   }
 }
 
-/* ------------------------------------------------------------
-   STATS
-   ------------------------------------------------------------ */
 .stats {
   max-width: var(--max);
   margin: 0 auto;
@@ -890,9 +860,6 @@ svg {
   color: var(--muted);
 }
 
-/* ------------------------------------------------------------
-   KATALOG
-   ------------------------------------------------------------ */
 .catalog {
   max-width: var(--max);
   margin: 0 auto;
@@ -1103,10 +1070,6 @@ svg {
   color: var(--muted-2);
 }
 
-/* ------------------------------------------------------------
-   ILUSTRASI PRODUK (mock)
-   Ganti dengan <img> di dalam .media untuk memakai foto asli.
-   ------------------------------------------------------------ */
 .mock {
   position: absolute;
   inset: 0;
@@ -1140,11 +1103,6 @@ svg {
   transform: translateX(-50%);
 }
 
-/* ------------------------------------------------------------
-   FOTO PRODUK 2D
-   Plate abu-abu dipakai dua kali: sebagai mask (bentuk kain) dan
-   sebagai pengali (lipatan kain). Satu elemen, tanpa aset kedua.
-   ------------------------------------------------------------ */
 .foto {
   position: absolute;
   inset: 0;
@@ -1167,8 +1125,7 @@ svg {
 
 .foto-objek {
   position: relative;
-  /* Pas di kedua sumbu: 92% lebar, tapi tidak pernah lebih tinggi dari 92%.
-     aspect-ratio menjaga benda tidak gepeng di panggung mana pun. */
+
   width: min(92cqi, 92cqb * var(--rasio, 0.8));
   aspect-ratio: var(--rasio, 0.8);
   container-type: inline-size;
@@ -1183,8 +1140,7 @@ svg {
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  /* bayangan mengikuti siluet benda — ini yang memisahkan benda dari latar.
-     Tetap: benda tidak bergerak saat kursor menunjuk. */
+
   filter: drop-shadow(0 9px 13px rgba(17, 19, 20, 0.22));
 }
 
@@ -1245,7 +1201,6 @@ svg {
   white-space: nowrap;
 }
 
-/* ukuran huruf cetak mengikuti lebar benda */
 .obj--mug .p--print {
   font-size: 6.8cqw;
   letter-spacing: 0.02em;
@@ -1265,7 +1220,6 @@ svg {
   letter-spacing: 0.04em;
 }
 
-/* ΓÇö Mug ΓÇö */
 .obj--mug {
   width: 46cqw;
   height: 40cqw;
@@ -1310,7 +1264,6 @@ svg {
   transform: translate(-50%, -50%);
 }
 
-/* ΓÇö Kaos ΓÇö */
 .obj--kaos {
   width: 62cqw;
   height: 60cqw;
@@ -1359,7 +1312,24 @@ svg {
   transform: translate(-50%, -50%);
 }
 
-/* ΓÇö Totebag ΓÇö */
+.obj--kerudung {
+  width: 62cqw;
+  height: 62cqw;
+  transform: rotate(-5deg);
+  border-radius: 1.5cqw;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--tone) 78%, #fff), var(--tone) 54%, color-mix(in srgb, var(--tone) 80%, #000));
+}
+
+.obj--kerudung .p--fold {
+  inset: 0;
+  background: linear-gradient(135deg, transparent 49.5%, rgba(17, 19, 20, 0.16) 50%, transparent 51%);
+}
+
+.obj--kerudung .p--print {
+  inset: 0;
+  font-size: 12cqw;
+}
+
 .obj--tote {
   width: 50cqw;
   height: 48cqw;
@@ -1399,7 +1369,6 @@ svg {
   transform: translate(-50%, -50%);
 }
 
-/* ΓÇö Pin ΓÇö */
 .obj--pin {
   width: 40cqw;
   height: 40cqw;
@@ -1428,7 +1397,6 @@ svg {
   transform: rotate(-8deg);
 }
 
-/* ΓÇö Gantungan kunci ΓÇö */
 .obj--gantungan {
   width: 32cqw;
   height: 38cqw;
@@ -1474,7 +1442,6 @@ svg {
   transform: translate(-50%, -50%);
 }
 
-/* ΓÇö Dokumen ΓÇö */
 .obj--dokumen {
   width: 36cqw;
   height: 46cqw;
@@ -1516,7 +1483,6 @@ svg {
   border-radius: 0.4cqw;
 }
 
-/* ΓÇö Spanduk ΓÇö */
 .obj--spanduk {
   width: 74cqw;
   height: 42cqw;
@@ -1561,7 +1527,6 @@ svg {
   font-size: 11cqw;
 }
 
-/* ΓÇö Desain ΓÇö */
 .obj--desain {
   width: 54cqw;
   height: 42cqw;
@@ -1607,9 +1572,6 @@ svg {
   box-shadow: 0 3cqw 0 -0.2cqw #b9b2a3, 0 5.6cqw 0 -0.2cqw #b9b2a3;
 }
 
-/* ------------------------------------------------------------
-   KONFIGURATOR
-   ------------------------------------------------------------ */
 .konfig {
   background: var(--ink);
   color: var(--paper);
@@ -1692,7 +1654,6 @@ svg {
   color: var(--vermillion);
 }
 
-/* chip versi terang (di drawer) */
 .field--dark .field-label {
   color: var(--muted-2);
 }
@@ -1773,9 +1734,6 @@ svg {
   border-color: var(--ink);
 }
 
-/* Tombol berikon eyedropper membuka pemilih warna bawaan sistem.
-   Diam: lingkaran putus-putus kosong. Sudah dipilih: lingkaran penuh
-   warna itu, ikonnya dibalik ke warna kontras supaya tetap terbaca. */
 .swatch-custom-wrap {
   position: relative;
   display: inline-flex;
@@ -1834,15 +1792,10 @@ svg {
   border-color: var(--ink);
 }
 
-/* Drawer berlatar kertas: `.field--dark .swatch` memaksa garis jadi `--line`
-   yang nyaris hilang. Kembalikan garis putus-putusnya supaya tetap terbaca
-   sebagai tombol tanpa berteriak. */
 .field--dark .swatch--custom {
   border-color: rgba(17, 19, 20, 0.4);
 }
 
-/* Panel konfigurator berlatar tinta: garis putus-putus dan ikon ikut terang.
-   Drawer tetap pakai warna dasar di atas karena latarnya kertas. */
 .konfig .swatch--custom {
   border-color: rgba(251, 248, 242, 0.34);
   color: rgba(251, 248, 242, 0.72);
@@ -1918,7 +1871,6 @@ svg {
   color: var(--lime);
 }
 
-/* Preview */
 .konfig-preview {
   display: flex;
   flex-direction: column;
@@ -2003,9 +1955,6 @@ svg {
   color: var(--paper);
 }
 
-/* ------------------------------------------------------------
-   PROSES
-   ------------------------------------------------------------ */
 .proses {
   max-width: var(--max);
   margin: 0 auto;
@@ -2065,9 +2014,6 @@ svg {
   line-height: 1.5;
 }
 
-/* ------------------------------------------------------------
-   BENTO
-   ------------------------------------------------------------ */
 .kenapa {
   max-width: var(--max);
   margin: 0 auto;
@@ -2213,9 +2159,6 @@ svg {
   background: linear-gradient(90deg, var(--lime), #c3dd52);
 }
 
-/* ------------------------------------------------------------
-   GALERI
-   ------------------------------------------------------------ */
 .galeri {
   max-width: var(--max);
   margin: 0 auto;
@@ -2227,6 +2170,14 @@ svg {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-auto-rows: clamp(150px, 19vw, 240px);
   gap: clamp(0.6rem, 1.2vw, 1rem);
+}
+
+.color-note {
+  display: block;
+  margin-top: 0.55rem;
+  color: var(--muted-2);
+  font-size: 0.76rem;
+  line-height: 1.45;
 }
 
 .g-cell {
@@ -2293,9 +2244,6 @@ svg {
   transform: scale(1.06);
 }
 
-/* ------------------------------------------------------------
-   ULASAN
-   ------------------------------------------------------------ */
 .ulasan {
   background: var(--ink);
   padding: clamp(3rem, 6vw, 5rem) 0;
@@ -2391,9 +2339,6 @@ svg {
   color: rgba(251, 248, 242, 0.45);
 }
 
-/* ------------------------------------------------------------
-   FAQ
-   ------------------------------------------------------------ */
 .faq {
   display: grid;
   grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
@@ -2410,7 +2355,6 @@ svg {
   transition: top 0.3s var(--ease);
 }
 
-/* header sedang menghilang ΓÇö judul FAQ naik mengisi ruangnya */
 body.hdr-hidden .faq-head {
   top: 1.25rem;
 }
@@ -2470,9 +2414,6 @@ body.hdr-hidden .faq-head {
   color: var(--muted);
 }
 
-/* ------------------------------------------------------------
-   CTA
-   ------------------------------------------------------------ */
 .cta {
   position: relative;
   overflow: hidden;
@@ -2562,9 +2503,6 @@ body.hdr-hidden .faq-head {
   user-select: none;
 }
 
-/* ------------------------------------------------------------
-   FOOTER
-   ------------------------------------------------------------ */
 .foot {
   background: var(--ink);
   color: var(--paper);
@@ -2640,9 +2578,6 @@ body.hdr-hidden .faq-head {
   color: var(--paper);
 }
 
-/* ------------------------------------------------------------
-   DRAWER + SCRIM
-   ------------------------------------------------------------ */
 .scrim {
   position: fixed;
   inset: 0;
@@ -2798,9 +2733,6 @@ body.hdr-hidden .faq-head {
   max-width: 62%;
 }
 
-/* ------------------------------------------------------------
-   MOTION
-   ------------------------------------------------------------ */
 .reveal {
   opacity: 0;
   transform: translateY(20px);
@@ -2813,9 +2745,6 @@ body.hdr-hidden .faq-head {
   transform: none;
 }
 
-/* ------------------------------------------------------------
-   RESPONSIF
-   ------------------------------------------------------------ */
 @media (max-width: 1080px) {
   .grid-product {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2870,7 +2799,6 @@ body.hdr-hidden .faq-head {
     margin: 0 auto;
   }
 
-  /* kartu miring menyentuh tepi layar ΓÇö tarik masuk agar tak bikin scroll */
   .float-card--b {
     right: 3%;
   }
@@ -3079,7 +3007,6 @@ body.hdr-hidden .faq-head {
   }
 }
 
-/* Layar sangat sempit: total & tombol pesan ditumpuk agar label utuh */
 @media (max-width: 400px) {
   .drawer-foot {
     flex-wrap: wrap;
@@ -3092,9 +3019,6 @@ body.hdr-hidden .faq-head {
   }
 }
 
-/* ------------------------------------------------------------
-   REDUCED MOTION
-   ------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -3115,5 +3039,94 @@ body.hdr-hidden .faq-head {
 
   .ticker-track {
     animation: none;
+  }
+}
+
+.galeri-grid {
+  grid-auto-rows: auto;
+  align-items: start;
+}
+
+.g-cell {
+  height: auto;
+}
+
+.g-cell:nth-child(1) {
+  grid-column: span 2;
+  grid-row: auto;
+}
+
+.g-cell:nth-child(2) {
+  grid-column: span 2;
+  grid-row: auto;
+}
+
+.g-cell:nth-child(n + 3) {
+  grid-column: span 1;
+  grid-row: auto;
+}
+
+.g-cell .media {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+}
+
+.g-cell .media img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.g-cell figcaption {
+  position: static;
+  display: block;
+  padding: 0.7rem 0.85rem 0.85rem;
+  background: transparent;
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 1080px) {
+  .galeri-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .g-cell:nth-child(-n + 2) {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .g-cell:nth-child(-n + 2) {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .float-card {
+    will-change: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .hdr,
+  .hdr.is-stuck {
+    background: rgba(251, 248, 242, 0.97);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .scrim {
+    backdrop-filter: none;
+  }
+
+  .reveal {
+    transform: none;
+    transition: opacity 0.3s var(--ease);
   }
 }
