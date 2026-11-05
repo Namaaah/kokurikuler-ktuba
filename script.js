@@ -71,7 +71,7 @@
     "Pertanyaan": "Questions", "Sebelum": "Before",
     "memesan.": "you order.",
     "Berapa minimum order?": "What is the minimum order?",
-    "Merchandise seperti mug, kaos, dan totebag bisa mulai 1 pcs. Pin dan gantungan kunci minimum 10 pcs karena proses cetaknya sekali jalan untuk satu batch. Cetak dokumen minimum 10 lembar.": "Merchandise such as mugs, T-shirts, and tote bags can be ordered from 1 piece. Pins and keychains have a 10-piece minimum because they are printed in batches. Document printing starts at 10 sheets.",
+    "Minimum pesanan tergantung produk dan satuannya. Mug custom mulai 6 pcs; produk lain mulai 1 unit. Satu paket foto pas berisi minimal 4 lembar.": "Minimum orders depend on the product and its listed unit. Custom mugs start at 6 pieces; other products start at 1 unit. One ID photo package contains at least 4 prints.",
     "Berapa lama prosesnya?": "How long does production take?",
     "Rata-rata 1–3 hari kerja setelah desain disetujui. Cetak dokumen bisa selesai hari yang sama. Untuk jumlah besar di atas 100 pcs atau finishing khusus, kami kabari estimasi pastinya sebelum produksi.": "Production usually takes 1–3 business days after design approval. Document printing may be ready the same day. For orders over 100 pieces or special finishing, we'll confirm the timeline before production.",
     "Format file apa yang dibutuhkan?": "What file formats do you accept?",

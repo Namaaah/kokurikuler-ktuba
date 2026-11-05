@@ -2046,9 +2046,18 @@ svg {
 .bento-cell--big {
   grid-column: span 2;
   grid-row: span 2;
-  background: var(--paper-2);
   overflow: hidden;
   min-height: 320px;
+  background: var(--paper-2);
+  border: 0;
+}
+
+.bento-cell--big:hover {
+  border-color: transparent;
+}
+
+.bento-cell--big .bento-num {
+  margin-bottom: 0;
 }
 
 .bento-num {
@@ -2114,49 +2123,15 @@ svg {
 }
 
 .bento-art {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 1;
-}
-
-.bento-cell--big::after {
-  display: none;
-}
-
-.bento-cell--big > * {
-  position: relative;
-  z-index: 2;
-}
-
-.rollers {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  transform: rotate(-24deg);
-}
-
-.rollers span {
+  --bleed: clamp(1.1rem, 2vw, 1.6rem);
   display: block;
-  height: 16px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--ink), var(--ink-3));
-}
-
-.rollers span:nth-child(2) {
-  width: 82%;
-  background: linear-gradient(90deg, var(--vermillion), var(--vermillion-d));
-}
-
-.rollers span:nth-child(3) {
-  width: 64%;
-  background: linear-gradient(90deg, #cfc6b4, #b9b09d);
-}
-
-.rollers span:nth-child(4) {
-  width: 46%;
-  background: linear-gradient(90deg, var(--lime), #c3dd52);
+  width: calc(100% + var(--bleed) * 2);
+  max-width: none;
+  height: auto;
+  aspect-ratio: 617 / 404;
+  margin: calc(var(--bleed) * -1) calc(var(--bleed) * -1) 1.1rem;
+  object-fit: cover;
+  object-position: center;
 }
 
 .galeri {
@@ -2688,6 +2663,10 @@ body.hdr-hidden .faq-head {
   line-height: 1.5;
 }
 
+.drawer .disc-note {
+  color: var(--ink);
+}
+
 .drawer-price {
   margin-bottom: 1.4rem;
   padding-bottom: 1.2rem;
@@ -2987,10 +2966,6 @@ body.hdr-hidden .faq-head {
 
   .bento-cell--big {
     grid-column: auto;
-  }
-
-  .bento-art {
-    height: clamp(12rem, 55vw, 20rem);
   }
 
   .steps {
