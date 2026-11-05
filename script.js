@@ -713,6 +713,7 @@
   const drawer = qs("#drawer");
   let lastFocus = null;
   let openPanel = null;
+  let drawerBackEntry = false;
 
   function trapFocus(e) {
     if (e.key !== "Tab" || !openPanel) return;
@@ -755,11 +756,16 @@
     document.addEventListener("keydown", trapFocus);
   }
 
-  function closePanelFn(el, silent) {
+  function closePanelFn(el, silent, fromHistory = false) {
     if (!el) return;
     el.classList.remove("is-open");
     if (openPanel === el) openPanel = null;
     document.removeEventListener("keydown", trapFocus);
+
+    if (el === drawer && drawerBackEntry) {
+      drawerBackEntry = false;
+      if (!fromHistory) window.history.back();
+    }
 
     if (!openPanel) {
       document.body.classList.remove("is-locked");
@@ -774,6 +780,12 @@
 
     if (!silent && lastFocus && lastFocus.focus) lastFocus.focus();
   }
+
+  window.addEventListener("popstate", () => {
+    if (!drawerBackEntry) return;
+    drawerBackEntry = false;
+    if (openPanel === drawer) closePanelFn(drawer, true, true);
+  });
 
   function onEsc(e) {
     if (e.key !== "Escape") return;
@@ -952,6 +964,15 @@
     };
 
     paintDrawer();
+    if (!drawerBackEntry) {
+      const state = window.history.state;
+      window.history.pushState(
+        { ...(state && typeof state === "object" ? state : {}), ktubaProductDrawer: true },
+        "",
+        window.location.href
+      );
+      drawerBackEntry = true;
+    }
     openPanelFn(drawer, drawerEls.close);
   }
 
