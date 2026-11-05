@@ -29,6 +29,7 @@ Urutan halaman: header → hero (kolase produk) → ticker → angka → katalog
 
 - Grid 12 kolom tak terlihat, lebar maksimum 1440px.
 - Bagian gelap (konfigurator) dan bagian lime (ulasan) memecah ritme halaman terang.
+- Kolase hero memakai preview produk dari konfigurasi katalog agar mockup tetap mengikuti warna dan bentuk produk.
 - Bayangan keras (offset, tanpa blur) sebagai pengganti bayangan lembut.
 - Kartu 01 "Kenapa KTUBA" memakai gambar mesin cetak berkanal transparan
   (`assets/dll/mesin-cetak-upscale.png`, 617×404) yang menempel ke tepi kartu: tanpa bingkai

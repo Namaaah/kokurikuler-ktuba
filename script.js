@@ -598,18 +598,15 @@
   }
 
   (function collage() {
-
-    const heroFotos = [
-      { src: "assets/produk/kaos.jpeg",    alt: "Kaos custom KTUBA" },
-      { src: "assets/produk/optimized/3-mug.jpg", alt: "Mug custom KTUBA" },
-      { src: "assets/produk/totebag-head.png", alt: "Totebag custom KTUBA" },
-    ];
-    ["collageA", "collageB", "collageC"].forEach((id, i) => {
+    const slots = { collageA: 0, collageB: 1, collageC: 2 };
+    const p = D();
+    Object.entries(slots).forEach(([id, idx]) => {
       const host = qs("#" + id);
-      if (!host) return;
-      const f = heroFotos[i];
-      const loading = i === 0 ? 'fetchpriority="high"' : 'loading="lazy"';
-      host.innerHTML = `<img src="${f.src}" alt="${f.alt}" decoding="async" ${loading} style="width:100%;height:100%;object-fit:cover;display:block;">`;
+      const prod = p[idx];
+      if (!host || !prod) return;
+      const key = prod.warna ? prod.warna[0] : "putih";
+      const t = toneOf(key);
+      host.innerHTML = mockMarkup(prod, t.tone, t.print);
     });
 
     const col = qs("#collage");
