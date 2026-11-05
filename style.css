@@ -220,6 +220,70 @@ svg {
   outline-offset: 3px;
 }
 
+/* Tombol bantuan melekat di kanan bawah, langsung ke WhatsApp. */
+.wa-float {
+  position: fixed;
+  right: clamp(1rem, 2.5vw, 2rem);
+  bottom: clamp(1rem, 2.5vw, 2rem);
+  z-index: 85;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  height: 52px;
+  padding: 0 1.15rem 0 1.05rem;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  box-shadow: 0 6px 22px rgba(17, 19, 20, 0.26);
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease),
+    transform 0.2s var(--ease), box-shadow 0.2s var(--ease),
+    opacity 0.2s var(--ease), visibility 0.2s var(--ease);
+}
+
+.wa-float svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  color: var(--lime);
+  transition: color 0.2s var(--ease);
+}
+
+.wa-float:hover {
+  background: #1f9d55;
+  border-color: #1f9d55;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(31, 157, 85, 0.32);
+}
+
+.wa-float:hover svg {
+  color: #fff;
+}
+
+.wa-float:focus-visible {
+  outline: 3px solid var(--lime);
+  outline-offset: 3px;
+}
+
+body.is-locked .wa-float {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+/* Di layar kecil tombol "ke atas" juga menempati kanan bawah: susun bertumpuk. */
+@media (max-width: 720px) {
+  .to-top {
+    bottom: calc(clamp(1rem, 2.5vw, 2rem) + 3.75rem);
+  }
+}
+
 .lang-toggle {
   display: inline-grid;
   min-width: 48px;
@@ -247,8 +311,13 @@ svg {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .to-top {
+  .to-top,
+  .wa-float {
     transition: none;
+  }
+
+  .wa-float:hover {
+    transform: none;
   }
 }
 
@@ -2045,7 +2114,13 @@ svg {
 .bento-cell--big {
   grid-column: span 2;
   grid-row: span 2;
+  overflow: hidden;
   background: var(--paper-2);
+  border: 0;
+}
+
+.bento-cell--big:hover {
+  border-color: transparent;
 }
 
 .bento-cell--big .bento-num {
@@ -2106,42 +2181,16 @@ svg {
 }
 
 .bento-art {
-  width: 100%;
-  max-width: 617px;
-  height: clamp(12rem, 26vw, 22rem);
-  margin: 0 auto 1rem;
+  /* Foto menempel ke tepi kartu: menutup seluruh bidang atas, tanpa bingkai kosong. */
+  --bleed: clamp(1.1rem, 2vw, 1.6rem);
   display: block;
-  object-fit: contain;
+  width: calc(100% + var(--bleed) * 2);
+  max-width: none;
+  height: auto;
+  aspect-ratio: 1400 / 759;
+  margin: calc(var(--bleed) * -1) calc(var(--bleed) * -1) 1.1rem;
+  object-fit: cover;
   object-position: center;
-}
-
-.rollers {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  transform: rotate(-24deg);
-}
-
-.rollers span {
-  display: block;
-  height: 16px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--ink), var(--ink-3));
-}
-
-.rollers span:nth-child(2) {
-  width: 82%;
-  background: linear-gradient(90deg, var(--vermillion), var(--vermillion-d));
-}
-
-.rollers span:nth-child(3) {
-  width: 64%;
-  background: linear-gradient(90deg, #cfc6b4, #b9b09d);
-}
-
-.rollers span:nth-child(4) {
-  width: 46%;
-  background: linear-gradient(90deg, var(--lime), #c3dd52);
 }
 
 .galeri {
@@ -2972,10 +3021,6 @@ body.hdr-hidden .faq-head {
 
   .bento-cell--big {
     grid-column: auto;
-  }
-
-  .bento-art {
-    height: clamp(12rem, 55vw, 20rem);
   }
 
   .steps {
