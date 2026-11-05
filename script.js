@@ -16,7 +16,6 @@
     "Navigasi seluler": "Mobile navigation",
     "Layanan": "Services", "Harga": "Pricing", "Proses": "Process", "Hasil": "Work", "FAQ": "FAQ",
     "Chat WhatsApp": "Chat on WhatsApp", "Buka menu": "Open menu",
-    "Bantuan": "Help", "Bantuan lewat WhatsApp": "Help on WhatsApp",
     "Percetakan & desain grafis · sejak": "Printing & graphic design · since",
     "Cetak yang bikin": "Print that makes",
     "orang minta": "people ask for",

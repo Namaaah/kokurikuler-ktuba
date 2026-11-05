@@ -30,13 +30,9 @@ Urutan halaman: header → hero (kolase produk) → ticker → angka → katalog
 - Grid 12 kolom tak terlihat, lebar maksimum 1440px.
 - Bagian gelap (konfigurator) dan bagian lime (ulasan) memecah ritme halaman terang.
 - Bayangan keras (offset, tanpa blur) sebagai pengganti bayangan lembut.
-- Kartu 01 "Kenapa KTUBA" memakai foto mesin cetak asli (`assets/dll/mesin-cetak-lebar.jpg`,
-  1400×759) yang menempel ke tepi kartu: tanpa bingkai garis, tanpa ruang kosong di atas
-  foto. Kartu ini satu-satunya sel bento tanpa border.
-- Tombol bantuan WhatsApp melekat di kanan bawah (`fixed`, z-index 85): pil tinta dengan
-  ikon lime, hover hijau, hilang saat drawer atau menu seluler terbuka (`body.is-locked`).
-  Di layar ≤720px tombol "ke atas" dinaikkan supaya keduanya bertumpuk, tidak bertabrakan.
-
+- Kartu 01 "Kenapa KTUBA" memakai gambar mesin cetak berkanal transparan
+  (`assets/dll/mesin-cetak-upscale.png`, 617×404) yang menempel ke tepi kartu: tanpa bingkai
+  garis, tanpa ruang kosong di atas gambar. Kartu ini satu-satunya sel bento tanpa border.
 ## Ilustrasi produk
 Produk tanpa konfigurasi `foto` memakai ilustrasi CSS murni (`container-type: inline-size`,
 satuan `cqw`), bukan gambar. `mockMarkup()` di `script.js` yang memilih jalurnya:
