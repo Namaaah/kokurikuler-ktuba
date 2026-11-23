@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <mask id="metal" mask-type="alpha">
+      <rect width="100" height="100" fill="#fff"/>
+      <ellipse cx="65" cy="67" rx="35" ry="33" fill="#000"/>
+    </mask>
+  </defs>
+  <rect width="100" height="100" fill="#fff" mask="url(#metal)"/>
+</svg>

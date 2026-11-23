@@ -191,6 +191,10 @@ const PRODUK = [
     mock: "gantungan",
     foto: {
       src: "assets/preview/gantungan-plate.webp",
+      mask: "assets/preview/gantungan-body-mask.svg",
+      hardware: "assets/preview/prev-gantungan-kunci2.png",
+      hardwareMask: "assets/preview/gantungan-metal-mask.svg",
+      variant: "gantungan",
       rasio: 1.0088,
       cetak: { x: 38, y: 55, w: 50, h: 22 },
     },

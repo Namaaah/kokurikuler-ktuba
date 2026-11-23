@@ -14,20 +14,20 @@
     "KTUBA, kembali ke atas": "KTUBA, back to top",
     "Navigasi utama": "Main navigation",
     "Navigasi seluler": "Mobile navigation",
-    "Layanan": "Services", "Harga": "Pricing", "Proses": "Process", "Hasil": "Work", "FAQ": "FAQ",
+    "Layanan": "Services", "Harga": "Pricing", "Custom": "Custom", "Proses": "Process", "Hasil": "Work", "FAQ": "FAQ",
     "Chat WhatsApp": "Chat on WhatsApp", "Buka menu": "Open menu",
     "Percetakan & desain grafis · sejak": "Printing & graphic design · since",
     "Cetak yang bikin": "Print that makes",
     "orang minta": "people ask for",
     "satu lagi.": "one more.",
     "Merchandise custom, dokumen, spanduk, sampai desain grafis komersial. Dikerjakan dengan mesin cetak skala industri — dan bisa mulai dari satu buah.": "Custom merchandise, documents, banners, and commercial graphic design. Produced on industrial-scale printing equipment, with orders starting from just one piece.",
-    "Lihat layanan": "Explore services", "Hitung harga": "Get a quote",
+    "Lihat layanan": "Explore services", "Hitung harga": "Get a quote", "Coba desain": "Try a design",
     "MOQ 1 pcs": "Minimum order: 1 piece", "Revisi desain gratis": "Free design revisions", "Kirim seluruh Indonesia": "Shipping across Indonesia",
     "Angka singkat KTUBA": "KTUBA at a glance",
     "Layanan KTUBA": "KTUBA services",
-    "Tiga belas cara": "Thirteen ways",
-    "membuat idemu": "to turn your idea into a",
-    "benda.": "real object.",
+    "13 cara membuat idemu": "13 ways to turn your idea into a",
+    "menjadi": "into",
+    "sebuah benda.": "real object.",
     "Pilih produknya, lihat estimasi harganya, lalu pesan langsung ke WhatsApp. Tidak perlu daftar akun.": "Choose a product, check the estimated price, then order directly on WhatsApp. No account needed.",
     "Filter kategori": "Filter by category",
     "Harga di atas adalah estimasi awal sebelum pilihan bahan dan jumlah. Angka final dikonfirmasi lewat WhatsApp.": "Prices shown are starting estimates before material and quantity options. The final price is confirmed via WhatsApp.",
@@ -118,7 +118,42 @@
     "Katun Combed 30s (S–XL)": "30s combed cotton (S–XL)", "Katun Combed 30s (XXL Jumbo)": "30s combed cotton (XXL)", "Katun Combed 24s (S–XL)": "24s combed cotton (S–XL)", "Katun Combed 24s (XXL Jumbo)": "24s combed cotton (XXL)",
     "Sablon plastisol": "Plastisol screen printing", "Bordir": "Embroidery", "Blacu": "Unbleached cotton", "Akrilik": "Acrylic", "Karet": "Rubber", "Hitam putih": "Black and white", "Tanpa jilid": "Unbound", "Jilid lakban": "Tape binding", "Akrilik doff": "Matte acrylic", "Akrilik bening": "Clear acrylic",
     "HVS 70 gsm": "70 gsm HVS paper", "HVS 80 gsm": "80 gsm HVS paper", "Art paper 120 gsm": "120 gsm art paper", "Flexy 280 GSM (indoor)": "280 GSM Flexy (indoor)", "Flexi Korea (outdoor)": "Korean Flexi (outdoor)", "Albatros (outdoor premium)": "Albatros (premium outdoor)", "A4 (Rp 10.000/lembar)": "A4 (IDR 10,000/sheet)", "A3 (Rp 20.000/lembar)": "A3 (IDR 20,000/sheet)", "Polino 115 cm + DTF": "115 cm Polino + DTF",
-    "A3 · Art Paper 120 gr · 13 lembar · klem": "A3 · 120 gsm art paper · 13 sheets · hanging clip", "A5 · Ivory 260 gr · 6 lembar · spiral": "A5 · 260 gsm ivory · 6 sheets · spiral binding", "A4 bolak-balik · full color": "A4 double-sided · full color", "3×4 (min. 4 lembar)": "3×4 cm (min. 4 prints)", "4×6 (min. 4 lembar)": "4×6 cm (min. 4 prints)", "3×4 + 4×6 combo": "3×4 + 4×6 combo", "Logo saja": "Logo only", "Logo + 3 turunan": "Logo + 3 variations", "Brand kit lengkap": "Complete brand kit", "2× revisi": "2 revisions"
+    "A3 · Art Paper 120 gr · 13 lembar · klem": "A3 · 120 gsm art paper · 13 sheets · hanging clip", "A5 · Ivory 260 gr · 6 lembar · spiral": "A5 · 260 gsm ivory · 6 sheets · spiral binding", "A4 bolak-balik · full color": "A4 double-sided · full color", "3×4 (min. 4 lembar)": "3×4 cm (min. 4 prints)", "4×6 (min. 4 lembar)": "4×6 cm (min. 4 prints)", "3×4 + 4×6 combo": "3×4 + 4×6 combo", "Logo saja": "Logo only", "Logo + 3 turunan": "Logo + 3 variations", "Brand kit lengkap": "Complete brand kit", "2× revisi": "2 revisions",
+    "Desain Sendiri": "Design It Yourself",
+    "Buat Produk Custom": "Create Custom Products",
+    "dengan": "with",
+    "Desainmu.": "Your Design.",
+    "Pilih produk, unggah desain, atur posisinya — lihat pratinjau langsung dan pesan.": "Pick a product, upload your design, adjust placement — see a live preview and order.",
+    "Pilih Produk": "Choose Product",
+    "Warna Produk": "Product Color",
+    "Warna hanya mengubah pratinjau produk, bukan cetakan desain.": "Color changes the product preview only, not the design print.",
+    "Unggah Desain": "Upload Design",
+    "Seret file ke sini atau": "Drag files here or",
+    "klik untuk pilih": "click to choose",
+    "PNG, JPG, SVG · Maks 10MB per file · Bisa multiple": "PNG, JPG, SVG · Max 10MB per file · Multiple allowed",
+    "Atur Desain": "Adjust Design",
+    "Desain Aktif": "Active Design",
+    "Hapus Latar Polos": "Remove Plain Background",
+    "Hapus warna latar polos": "Remove plain background color",
+    "Hapus warna latar polos langsung di browser. Hasil terbaik untuk latar putih.": "Remove a plain background color in your browser. Works best with white backgrounds.",
+    "Hapus latar belakang otomatis": "Auto-remove background",
+    "Pratinjau ini simulasi. Kirim file desain asli lewat WhatsApp saat memesan.": "This preview is a mockup. Send your original design files on WhatsApp when ordering.",
+    "Geser desain untuk memindahkan. Cubit dengan dua jari di HP, atau tarik titik sudut di komputer untuk mengubah ukuran.": "Drag the design to move it. Pinch with two fingers on a phone, or drag the corner handle on a computer to resize it.",
+    "Perkecil desain": "Shrink design",
+    "Besarkan desain": "Enlarge design",
+    "Atur ukuran desain": "Adjust design size",
+    "Skala": "Scale",
+    "Rotasi": "Rotation",
+    "Posisi X": "Position X",
+    "Posisi Y": "Position Y",
+    "Reset Posisi": "Reset Position",
+    "Jumlah & Harga": "Quantity & Price",
+    "Harga satuan": "Unit price",
+    "Subtotal": "Subtotal",
+    "Diskon": "Discount",
+    "Total": "Total",
+    "Pratinjau": "Preview",
+    "Belum ada desain. Unggah file di atas untuk memulai.": "No design yet. Upload a file above to start.",
   };
 
   const EN_UPPER_TEXT = Object.fromEntries(Object.entries(EN_TEXT).map(([source, translated]) => [source.toUpperCase(), translated.toUpperCase()]));
@@ -370,9 +405,10 @@
     return `<div class="foto" style="--tone:${tone};--print:${print};--img:${url};--rasio:${f.rasio || 0.8}">
       <div class="foto-lantai" aria-hidden="true"></div>
       <div class="foto-panggung">
-        <div class="foto-objek" style="--cx:${c.x}%;--cy:${c.y}%;--cw:${c.w}%;--ch:${c.h}%;--blend:${gelap ? "soft-light" : "multiply"};--blend-cetak:${gelap ? "normal" : "multiply"}">
+        <div class="foto-objek${f.variant ? ` foto-objek--${f.variant}` : ""}" style="--cx:${c.x}%;--cy:${c.y}%;--cw:${c.w}%;--ch:${c.h}%;--blend:${gelap ? "soft-light" : "multiply"};--blend-cetak:${gelap ? "normal" : "multiply"};${f.mask ? `--mask-img:url('${f.mask}');` : ""}">
           <span class="foto-cetak" aria-hidden="true">KTUBA</span>
         </div>
+        ${f.hardware ? `<img class="foto-hardware" src="${f.hardware}" style="--hardware-mask:url('${f.hardwareMask}');--rasio:${f.rasio || 0.8}" alt="" aria-hidden="true">` : ""}
       </div>
     </div>`;
   }
@@ -975,186 +1011,722 @@
 
   if (drawerEls.close) drawerEls.close.addEventListener("click", () => closePanelFn(drawer));
 
-  (function konfigurator() {
-    const root = qs("#konfigProduk");
-    if (!root) return;
+  (function designer() {
+    const designerSection = qs("#harga");
+    if (!designerSection) return;
+
+    const customizableProducts = D().filter((p) => p.kategori !== "desain" && !["dokumen", "jilbab", "kalender-dinding", "kalender-meja", "brosur", "foto-pas"].includes(p.id));
+    if (!customizableProducts.length) return;
 
     const els = {
-      produk: qs("#konfigProduk"),
-      warna: qs("#konfigWarna"),
-      opsi: qs("#konfigOpsi"),
-      ukuranField: qs("#konfigUkuranField"),
-      ukuran: qs("#konfigUkuran"),
-      qty: qs("#konfigQty"),
-      qtyInput: qs("#konfigQtyInput"),
-      media: qs("#konfigMedia"),
-      badge: qs("#konfigBadge"),
-      total: qs("#konfigTotal"),
-      detail: qs("#konfigDetail"),
-      add: qs("#konfigOrder"),
+      productSelector: qs("#designerProductSelector"),
+      warna: qs("#designerWarna"),
+      uploadZone: qs("#uploadZone"),
+      designUpload: qs("#designUpload"),
+      designList: qs("#designList"),
+      designControls: qs("#designControls"),
+      activeDesignSelect: qs("#activeDesignSelect"),
+      removeBgToggle: qs("#removeBgToggle"),
+      designScale: qs("#designScale"),
+      designScaleValue: qs("#designScaleValue"),
+      designRotate: qs("#designRotate"),
+      designRotateValue: qs("#designRotateValue"),
+      designPosX: qs("#designPosX"),
+      designPosXValue: qs("#designPosXValue"),
+      designPosY: qs("#designPosY"),
+      designPosYValue: qs("#designPosYValue"),
+      resetDesignBtn: qs("#resetDesignBtn"),
+      noDesignState: qs("#noDesignState"),
+      qty: qs("#designerQty"),
+      qtyInput: qs("#designerQtyInput"),
+      unitPrice: qs("#designerUnitPrice"),
+      subtotal: qs("#designerSubtotal"),
+      discountRow: qs("#designerDiscountRow"),
+      discount: qs("#designerDiscount"),
+      total: qs("#designerTotal"),
+      orderBtn: qs("#designerOrder"),
+      previewCanvas: qs("#previewCanvas"),
+      previewBadge: qs("#previewBadge"),
+      previewUploadBtn: qs("#previewUploadBtn"),
+      zoomInBtn: qs("#zoomInBtn"),
+      zoomOutBtn: qs("#zoomOutBtn"),
+      previewScaleDisplay: qs("#previewScaleDisplay"),
     };
 
-    const first = D()[0];
-    if (!first) return;
-
-    const kst = {
-      p: first,
-      toneKey: (first.warna && first.warna[0]) || "putih",
-      opsi: (first.opsi || []).map(() => 0),
-      ukuran: first.ukuran ? first.ukuran[0] : null,
+    const state = {
+      product: customizableProducts[0],
+      toneKey: (customizableProducts[0].warna && customizableProducts[0].warna[0]) || "putih",
+      designs: [],
+      activeDesignIndex: -1,
       qty: 1,
     };
 
-    function paint() {
-      const { p } = kst;
-      const t = toneOf(kst.toneKey);
-      const satuan = hitungSatuan(p, kst.opsi);
-      const total = hitungTotal(p, kst.opsi, kst.qty);
-      const dis = diskonAktif(p, kst.qty);
-
-      els.media.innerHTML = mockMarkup(p, t.tone, t.print);
-      els.badge.textContent = p.nama;
-      els.total.textContent = rp(total);
-
-      const parts = [`${rp(satuan)} × ${kst.qty} ${p.unit}`];
-      if (dis) parts.push(`diskon ${Math.round(dis.potong * 100)}%`);
-      els.detail.textContent = parts.join(" · ");
-
-      els.qtyInput.value = kst.qty;
+    function getActiveDesign() {
+      if (state.activeDesignIndex >= 0 && state.activeDesignIndex < state.designs.length) {
+        return state.designs[state.activeDesignIndex];
+      }
+      return null;
     }
 
-    function paintProduk() {
-      els.produk.innerHTML = D()
+    function getProductPrintArea() {
+      const p = state.product;
+      if (p && p.foto && p.foto.cetak) return p.foto.cetak;
+      const areas = {
+        spanduk: { x: 13, y: 29, w: 74, h: 42 },
+        sticker: { x: 32, y: 27, w: 36, h: 46 },
+      };
+      return areas[p && p.id] || { x: 33, y: 46, w: 34, h: 26 };
+    }
+
+    function renderProductSelector() {
+      els.productSelector.innerHTML = customizableProducts
         .map(
-          (p) =>
-            `<button type="button" class="chip${p.id === kst.p.id ? " is-active" : ""}" data-pid="${p.id}">${p.nama}</button>`
+          (p, i) => `
+          <button type="button" class="product-btn${i === 0 ? " is-active" : ""}" data-pid="${p.id}" role="option" aria-selected="${i === 0}">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${getProductIcon(p.id)}</svg>
+            <span>${p.nama}</span>
+          </button>`
         )
         .join("");
+
+      els.productSelector.querySelectorAll(".product-btn").forEach((btn) => {
+        btn.addEventListener("click", () => selectProduct(btn.dataset.pid));
+      });
     }
 
-    function paintWarna() {
-      els.warna.innerHTML = swatchMarkup(kst.p.warna || [], kst.toneKey);
+    function getProductIcon(id) {
+      const icons = {
+        mug: '<path d="M3 3h18v18H3z"/><path d="M5 3v18"/><path d="M19 3v18"/><path d="M21 12H15"/><path d="M3 12H9"/>',
+        kaos: '<path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-.56 1.48l-1.66 7A2 2 0 0 0 3.4 15h17.2a2 2 0 0 0 1.94-1.54l-1.66-7a2 2 0 0 0-.56-1.48z"/>',
+        totebag: '<path d="M21 6H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"/><path d="M3 6h18"/><path d="M16 6v4"/><path d="M8 6v4"/>',
+        pin: '<circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/>',
+        gantungan: '<circle cx="12" cy="6" r="3"/><path d="M12 9v12"/><path d="M8 12h8"/>',
+        jilbab: '<path d="M12 3c-4 2-7 6-7 11a7 7 0 0 0 14 0c0-5-3-9-7-11Z"/><path d="M5 14c3 1 11 1 14 0"/>',
+        spanduk: '<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M6 8h12M6 11h8"/>',
+        sticker: '<path d="M5 3h14v12l-6 6H5z"/><path d="M13 21v-6h6"/>',
+        "kalender-dinding": '<rect x="3" y="5" width="18" height="16" rx="1"/><path d="M7 3v4M17 3v4M3 10h18"/>',
+        "kalender-meja": '<rect x="4" y="4" width="16" height="13" rx="1"/><path d="m6 17-2 4h16l-2-4M8 8h8M8 11h5"/>',
+        brosur: '<path d="M4 4h16v16H4zM8 4v16M12 8h5M12 12h5"/>',
+      };
+      return icons[id] || icons.mug;
     }
 
-    function paintOpsi() {
-      els.opsi.innerHTML = (kst.p.opsi || [])
+    function selectProduct(pid) {
+      const p = customizableProducts.find((x) => x.id === pid);
+      if (!p) return;
+
+      state.product = p;
+      state.toneKey = (p.warna && p.warna[0]) || "putih";
+      state.qty = Math.max(1, p.moq || 1);
+
+      els.productSelector.querySelectorAll(".product-btn").forEach((btn) => {
+        btn.classList.toggle("is-active", btn.dataset.pid === pid);
+        btn.setAttribute("aria-selected", btn.dataset.pid === pid);
+      });
+
+      renderWarna();
+      renderDesignList();
+      renderActiveDesignSelect();
+      renderDesignControls();
+      renderPreview();
+      updatePrice();
+      updateQtyInput();
+    }
+
+    function renderWarna() {
+      els.warna.innerHTML = swatchMarkup(state.product.warna || [], state.toneKey);
+
+      els.warna.onclick = (e) => {
+        const b = e.target.closest("[data-tone]");
+        if (b) {
+          state.toneKey = b.dataset.tone;
+          renderWarna();
+          renderPreview();
+          return;
+        }
+
+        const customButton = e.target.closest("[data-custom-color]");
+        if (customButton) openCustomColorPicker(customButton);
+      };
+
+      els.warna.oninput = (e) => {
+        const inp = e.target.closest('input[type="color"]');
+        if (!inp) return;
+        const button = inp.previousElementSibling;
+        state.toneKey = inp.value;
+        button.style.setProperty("--sw", inp.value);
+        button.style.setProperty("--sw-ink", tintaSwatch(inp.value));
+        button.title = "Ubah warna custom " + inp.value.toUpperCase();
+        button.setAttribute("aria-label", button.title);
+        qsa(".swatch", els.warna).forEach((x) => x.classList.toggle("is-active", x === button));
+        renderPreview();
+      };
+    }
+
+    function handleFiles(files) {
+      Array.from(files).forEach((file) => {
+        if (!file.type.startsWith("image/") && file.type !== "image/svg+xml") return;
+        if (file.size > 10 * 1024 * 1024) {
+          alert(`File ${file.name} terlalu besar (maks 10MB)`);
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const design = {
+            id: Date.now() + Math.random(),
+            name: file.name,
+            type: file.type,
+            size: file.size,
+            dataUrl: e.target.result,
+            originalDataUrl: e.target.result,
+            hasBgRemoved: false,
+            scale: 100,
+            rotate: 0,
+            posX: 50,
+            posY: 50,
+          };
+          state.designs.push(design);
+          state.activeDesignIndex = state.designs.length - 1;
+          renderDesignList();
+          renderActiveDesignSelect();
+          renderDesignControls();
+          renderPreview();
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    els.uploadZone.addEventListener("click", (e) => {
+      if (e.target !== els.designUpload) els.designUpload.click();
+    });
+    els.previewUploadBtn.addEventListener("click", () => els.designUpload.click());
+    els.uploadZone.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        els.designUpload.click();
+      }
+    });
+
+    els.designUpload.addEventListener("change", (e) => {
+      if (e.target.files.length) handleFiles(e.target.files);
+      e.target.value = "";
+    });
+
+    els.uploadZone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      els.uploadZone.classList.add("is-dragover");
+    });
+
+    els.uploadZone.addEventListener("dragleave", () => {
+      els.uploadZone.classList.remove("is-dragover");
+    });
+
+    els.uploadZone.addEventListener("drop", (e) => {
+      e.preventDefault();
+      els.uploadZone.classList.remove("is-dragover");
+      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+    });
+
+    function renderDesignList() {
+      if (!state.designs.length) {
+        els.designList.innerHTML = "";
+        els.noDesignState.hidden = false;
+        els.designControls.hidden = true;
+        els.zoomOutBtn.disabled = true;
+        els.zoomInBtn.disabled = true;
+        els.previewScaleDisplay.textContent = "—";
+        return;
+      }
+
+      els.noDesignState.hidden = true;
+      els.designControls.hidden = false;
+
+      els.designList.innerHTML = state.designs
         .map(
-          (g, gi) => `
-          <div class="field">
-            <span class="field-label">${g.nama}</span>
-            <div class="chip-row" data-group="${gi}">
-              ${(g.pilihan || [])
-                .map(
-                  (o, oi) =>
-                    `<button type="button" class="chip${kst.opsi[gi] === oi ? " is-active" : ""}" data-oi="${oi}">${o.t}${
-                      o.d > 0 ? `<em>+${rp(o.d)}</em>` : ""
-                    }</button>`
-                )
-                .join("")}
+          (d, i) => `
+          <div class="design-item${i === state.activeDesignIndex ? " is-active" : ""}" data-index="${i}" role="button" tabindex="0" aria-label="${d.name}${i === state.activeDesignIndex ? " (aktif)" : ""}" aria-pressed="${i === state.activeDesignIndex}">
+            <div class="design-thumb"><img src="${d.dataUrl}" alt="" loading="lazy"></div>
+            <div class="design-info">
+              <span class="design-name">${escapeHtml(d.name)}</span>
+              <span class="design-size">${formatFileSize(d.size)}</span>
             </div>
+            <button class="design-remove" data-remove="${i}" aria-label="Hapus ${escapeHtml(d.name)}">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
           </div>`
         )
         .join("");
 
-      if (kst.p.ukuran && kst.p.ukuran.length) {
-        els.ukuranField.hidden = false;
-        els.ukuran.innerHTML = kst.p.ukuran
-          .map(
-            (u) =>
-              `<button type="button" class="chip${kst.ukuran === u ? " is-active" : ""}" data-uk="${u}">${u}</button>`
-          )
-          .join("");
-      } else {
-        els.ukuranField.hidden = true;
-        els.ukuran.innerHTML = "";
+      els.designList.querySelectorAll(".design-item").forEach((item) => {
+        item.addEventListener("click", (e) => {
+          if (e.target.closest(".design-remove")) return;
+          const idx = Number(item.dataset.index);
+          if (idx !== state.activeDesignIndex) {
+            state.activeDesignIndex = idx;
+            renderDesignList();
+            renderActiveDesignSelect();
+            renderDesignControls();
+            renderPreview();
+          }
+        });
+
+        item.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            item.click();
+          }
+        });
+      });
+
+      els.designList.querySelectorAll(".design-remove").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const idx = Number(btn.dataset.remove);
+          removeDesign(idx);
+        });
+      });
+    }
+
+    function removeDesign(idx) {
+      state.designs.splice(idx, 1);
+      if (state.activeDesignIndex === idx) state.activeDesignIndex = Math.min(idx, state.designs.length - 1);
+      else if (state.activeDesignIndex > idx) state.activeDesignIndex -= 1;
+      renderDesignList();
+      renderActiveDesignSelect();
+      renderDesignControls();
+      renderPreview();
+    }
+
+    function renderActiveDesignSelect() {
+      els.activeDesignSelect.innerHTML = state.designs
+        .map((d, i) => `<option value="${i}"${i === state.activeDesignIndex ? " selected" : ""}>${escapeHtml(d.name)}</option>`)
+        .join("");
+    }
+
+    function renderDesignControls() {
+      const design = getActiveDesign();
+      if (!design) return;
+
+      els.activeDesignSelect.value = state.activeDesignIndex;
+      els.removeBgToggle.checked = design.hasBgRemoved;
+      els.designScale.value = design.scale;
+      els.designScaleValue.textContent = design.scale + "%";
+      els.previewScaleDisplay.textContent = Math.round(design.scale) + "%";
+      els.zoomOutBtn.disabled = design.scale <= 10;
+      els.zoomInBtn.disabled = design.scale >= 400;
+      els.designRotate.value = design.rotate;
+      els.designRotateValue.textContent = design.rotate + "°";
+      els.designPosX.value = design.posX;
+      els.designPosXValue.textContent = design.posX + "%";
+      els.designPosY.value = design.posY;
+      els.designPosYValue.textContent = design.posY + "%";
+    }
+
+    els.activeDesignSelect.addEventListener("change", (e) => {
+      state.activeDesignIndex = Number(e.target.value);
+      renderDesignList();
+      renderDesignControls();
+      renderPreview();
+    });
+
+    els.removeBgToggle.addEventListener("change", (e) => {
+      const design = getActiveDesign();
+      if (!design) return;
+
+      design.hasBgRemoved = e.target.checked;
+
+      if (design.hasBgRemoved && !design.originalDataUrl) {
+        design.originalDataUrl = design.dataUrl;
+      }
+
+      if (design.hasBgRemoved) {
+        removeBackground(design);
+      } else if (design.originalDataUrl) {
+        design.dataUrl = design.originalDataUrl;
+        renderDesignList();
+        renderPreview();
+      }
+    });
+
+    async function removeBackground(design) {
+      try {
+        const image = new Image();
+        image.onload = () => {
+          if (!design.hasBgRemoved) return;
+          const canvas = document.createElement("canvas");
+          canvas.width = image.naturalWidth;
+          canvas.height = image.naturalHeight;
+          const context = canvas.getContext("2d", { willReadFrequently: true });
+          context.drawImage(image, 0, 0);
+          const pixels = context.getImageData(0, 0, canvas.width, canvas.height);
+          const { data, width, height } = pixels;
+          const corners = [0, (width - 1) * 4, ((height - 1) * width) * 4, (height * width - 1) * 4]
+            .filter((i) => data[i + 3] > 0);
+          if (!corners.length) {
+            design.hasBgRemoved = false;
+            els.removeBgToggle.checked = false;
+            return;
+          }
+          const background = [0, 1, 2].map((channel) =>
+            corners.reduce((sum, i) => sum + data[i + channel], 0) / corners.length
+          );
+
+          for (let i = 0; i < data.length; i += 4) {
+            const distance = Math.hypot(data[i] - background[0], data[i + 1] - background[1], data[i + 2] - background[2]);
+            if (distance < 42) data[i + 3] = 0;
+            else if (distance < 78) data[i + 3] = Math.round(data[i + 3] * ((distance - 42) / 36));
+          }
+
+          context.putImageData(pixels, 0, 0);
+          design.dataUrl = canvas.toDataURL("image/png");
+          renderDesignList();
+          renderPreview();
+        };
+        image.onerror = () => {
+          design.hasBgRemoved = false;
+          els.removeBgToggle.checked = false;
+          alert("Latar gambar tidak bisa diproses. Coba file PNG atau JPG.");
+        };
+        image.src = design.originalDataUrl;
+      } catch (err) {
+        design.hasBgRemoved = false;
+        els.removeBgToggle.checked = false;
+        alert("Gambar gagal diproses. Coba file PNG atau JPG.");
       }
     }
 
-    function syncProduct(p) {
-      kst.p = p;
-      kst.toneKey = (p.warna && p.warna[0]) || "putih";
-      kst.opsi = (p.opsi || []).map(() => 0);
-      kst.ukuran = p.ukuran ? p.ukuran[0] : null;
-      kst.qty = Math.max(1, p.moq || 1);
-      paintProduk();
-      paintWarna();
-      paintOpsi();
-      paint();
+    function updateDesignProp(prop, value) {
+      const design = getActiveDesign();
+      if (!design) return;
+      design[prop] = value;
+      renderDesignControls();
+      renderPreview();
     }
 
-    els.produk.addEventListener("click", (e) => {
-      const b = e.target.closest("[data-pid]");
-      if (!b) return;
-      const p = D().find((x) => x.id === b.dataset.pid);
-      if (p) syncProduct(p);
+    els.designScale.addEventListener("input", (e) => {
+      updateDesignProp("scale", Number(e.target.value));
+      els.designScaleValue.textContent = e.target.value + "%";
     });
 
-    els.warna.addEventListener("click", (e) => {
-      const b = e.target.closest("[data-tone]");
-      if (b) {
-        kst.toneKey = b.dataset.tone;
-        paintWarna();
-        paint();
-        return;
-      }
-
-      const customButton = e.target.closest("[data-custom-color]");
-      if (customButton) openCustomColorPicker(customButton);
+    els.designRotate.addEventListener("input", (e) => {
+      updateDesignProp("rotate", Number(e.target.value));
+      els.designRotateValue.textContent = e.target.value + "°";
     });
 
-    els.warna.addEventListener("input", (e) => {
-      const inp = e.target.closest('input[type="color"]');
-      if (!inp) return;
-      const button = inp.previousElementSibling;
-      kst.toneKey = inp.value;
-      button.style.setProperty("--sw", inp.value);
-      button.style.setProperty("--sw-ink", tintaSwatch(inp.value));
-      button.title = "Ubah warna custom " + inp.value.toUpperCase();
-      button.setAttribute("aria-label", button.title);
-      qsa(".swatch", els.warna).forEach((x) => x.classList.toggle("is-active", x === button));
-      paint();
+    els.designPosX.addEventListener("input", (e) => {
+      updateDesignProp("posX", Number(e.target.value));
+      els.designPosXValue.textContent = e.target.value + "%";
     });
 
-    els.opsi.addEventListener("click", (e) => {
-      const chip = e.target.closest(".chip");
-      if (!chip) return;
-      const row = chip.parentElement;
-      const gi = Number(row.dataset.group);
-      kst.opsi[gi] = Number(chip.dataset.oi);
-      qsa(".chip", row).forEach((x) => x.classList.toggle("is-active", x === chip));
-      paint();
+    els.designPosY.addEventListener("input", (e) => {
+      updateDesignProp("posY", Number(e.target.value));
+      els.designPosYValue.textContent = e.target.value + "%";
     });
 
-    els.ukuran.addEventListener("click", (e) => {
-      const chip = e.target.closest("[data-uk]");
-      if (!chip) return;
-      kst.ukuran = chip.dataset.uk;
-      qsa(".chip", els.ukuran).forEach((x) => x.classList.toggle("is-active", x === chip));
+    els.resetDesignBtn.addEventListener("click", () => {
+      const design = getActiveDesign();
+      if (!design) return;
+      design.scale = 100;
+      design.rotate = 0;
+      design.posX = 50;
+      design.posY = 50;
+      renderDesignControls();
+      renderPreview();
     });
+
+    function updateQtyInput() {
+      els.qtyInput.value = state.qty;
+      const min = state.product.moq || 1;
+      els.qtyInput.min = min;
+    }
 
     els.qty.addEventListener("click", (e) => {
       const b = e.target.closest("[data-step]");
       if (!b) return;
-      const min = kst.p.moq || 1;
-      kst.qty = Math.max(min, kst.qty + Number(b.dataset.step));
-      paint();
+      const min = state.product.moq || 1;
+      state.qty = Math.max(min, state.qty + Number(b.dataset.step));
+      updateQtyInput();
+      updatePrice();
     });
 
     els.qtyInput.addEventListener("change", () => {
-      const min = kst.p.moq || 1;
-      kst.qty = Math.max(min, Math.floor(Number(els.qtyInput.value) || min));
-      paint();
+      const min = state.product.moq || 1;
+      state.qty = Math.max(min, Math.floor(Number(els.qtyInput.value) || min));
+      updateQtyInput();
+      updatePrice();
     });
 
-    els.add.addEventListener("click", () => {
-      const teks = pesanPesanan(kst.p, kst.opsi, kst.toneKey, kst.ukuran, kst.qty);
+    function updatePrice() {
+      const p = state.product;
+      const satuan = hitungSatuan(p, (p.opsi || []).map(() => 0));
+      const dis = diskonAktif(p, state.qty);
+      const subtotal = satuan * state.qty;
+      const discountAmount = dis ? Math.round(subtotal * dis.potong / 100) * 100 : 0;
+      const total = hitungTotal(p, (p.opsi || []).map(() => 0), state.qty);
+
+      els.unitPrice.textContent = rp(satuan);
+      els.subtotal.textContent = rp(subtotal);
+
+      if (dis) {
+        els.discountRow.hidden = false;
+        els.discount.textContent = rp(discountAmount);
+      } else {
+        els.discountRow.hidden = true;
+      }
+
+      els.total.textContent = rp(total);
+    }
+
+    function renderPreview() {
+      const p = state.product;
+      const t = toneOf(state.toneKey);
+      const printArea = getProductPrintArea();
+
+      const bgMarkup = mockMarkup(p, t.tone, t.print);
+
+      let designsMarkup = "";
+      state.designs.forEach((d, index) => {
+        const scale = d.scale / 100;
+        const rotate = d.rotate;
+        const printW = printArea.w;
+        const printH = printArea.h;
+        const printX = printArea.x;
+        const printY = printArea.y;
+        const designY = printY + (printH - printW) / 2;
+        const transform = `translate3d(${d.posX - 50}%, ${((d.posY - 50) * printH) / printW}%, 0) rotate(${rotate}deg) scale(${scale})`;
+
+        designsMarkup += `
+          <div class="preview-design${index === state.activeDesignIndex ? " is-active" : ""}" style="
+            left: ${printX}%;
+            top: ${designY}%;
+            width: ${printW}%;
+            height: ${printW}%;
+            transform: ${transform};
+            transform-origin: center center;
+          " data-design-index="${index}" role="button" tabindex="0" aria-pressed="${index === state.activeDesignIndex}" aria-label="Pindahkan atau ubah ukuran ${escapeHtml(d.name)}">
+            <img src="${d.dataUrl}" alt="" draggable="false" style="width:100%;height:100%;object-fit:contain;">
+            ${index === state.activeDesignIndex ? '<span class="preview-design-handle" aria-hidden="true"></span>' : ""}
+          </div>`;
+      });
+
+      els.previewCanvas.innerHTML = bgMarkup + designsMarkup;
+      els.previewBadge.textContent = p.nama;
+    }
+
+    function updatePreviewLayer(index, design) {
+      const layer = els.previewCanvas.querySelector(`.preview-design[data-design-index="${index}"]`);
+      if (!layer) return;
+      const printArea = getProductPrintArea();
+      layer.style.transform = `translate3d(${design.posX - 50}%, ${((design.posY - 50) * printArea.h) / printArea.w}%, 0) rotate(${design.rotate}deg) scale(${design.scale / 100})`;
+    }
+
+    function syncDesignControls(design) {
+      els.designScale.value = design.scale;
+      els.designScaleValue.textContent = Math.round(design.scale) + "%";
+      els.previewScaleDisplay.textContent = Math.round(design.scale) + "%";
+      els.zoomOutBtn.disabled = design.scale <= 10;
+      els.zoomInBtn.disabled = design.scale >= 400;
+      els.designPosX.value = design.posX;
+      els.designPosXValue.textContent = Math.round(design.posX) + "%";
+      els.designPosY.value = design.posY;
+      els.designPosYValue.textContent = Math.round(design.posY) + "%";
+    }
+
+    const activePointers = new Map();
+    let gesture = null;
+
+    function distanceBetween(a, b) {
+      return Math.hypot(a.x - b.x, a.y - b.y);
+    }
+
+    function midpointBetween(a, b) {
+      return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+    }
+
+    function clampScale(value) {
+      return Math.max(10, Math.min(400, value));
+    }
+
+    function beginMoveGesture(pointerId, point, design, canvasRect) {
+      gesture = {
+        mode: "move",
+        pointerId,
+        index: point.index,
+        startX: point.x,
+        startY: point.y,
+        startPosX: design.posX,
+        startPosY: design.posY,
+        canvasRect,
+      };
+    }
+
+    els.previewCanvas.addEventListener("pointerdown", (e) => {
+      const target = e.target.closest(".preview-design");
+      if (!target) return;
+      const index = Number(target.dataset.designIndex);
+      state.activeDesignIndex = index;
+      const design = state.designs[index];
+      if (!design) return;
+      const bounds = target.getBoundingClientRect();
+      const canvasRect = els.previewCanvas.getBoundingClientRect();
+      const point = {
+        x: e.clientX,
+        y: e.clientY,
+        index,
+        resize: Boolean(e.target.closest(".preview-design-handle")),
+      };
+      activePointers.set(e.pointerId, point);
+      renderDesignList();
+      renderActiveDesignSelect();
+      renderDesignControls();
+      els.previewCanvas.setPointerCapture(e.pointerId);
+      renderPreview();
+
+      const sameDesignPointers = Array.from(activePointers.entries()).filter(([, p]) => p.index === index);
+      if (sameDesignPointers.length >= 2) {
+        const [[firstId, first], [secondId, second]] = sameDesignPointers.slice(-2);
+        const midpoint = midpointBetween(first, second);
+        gesture = {
+          mode: "pinch",
+          index,
+          pointerIds: [firstId, secondId],
+          startDistance: Math.max(1, distanceBetween(first, second)),
+          startMidpoint: midpoint,
+          startScale: design.scale,
+          startPosX: design.posX,
+          startPosY: design.posY,
+          canvasRect,
+        };
+      } else if (point.resize) {
+        gesture = {
+          mode: "resize",
+          pointerId: e.pointerId,
+          index,
+          anchorX: bounds.left,
+          anchorY: bounds.top,
+          startDistance: Math.max(1, Math.hypot(e.clientX - bounds.left, e.clientY - bounds.top)),
+          startScale: design.scale,
+          canvasRect,
+        };
+      } else {
+        beginMoveGesture(e.pointerId, point, design, canvasRect);
+      }
+      e.preventDefault();
+    });
+
+    els.previewCanvas.addEventListener("pointermove", (e) => {
+      const point = activePointers.get(e.pointerId);
+      if (!point || !gesture) return;
+      point.x = e.clientX;
+      point.y = e.clientY;
+      const rect = gesture.canvasRect;
+      const printArea = getProductPrintArea();
+      const design = state.designs[gesture.index];
+      if (!design) return;
+
+      if (gesture.mode === "pinch") {
+        const first = activePointers.get(gesture.pointerIds[0]);
+        const second = activePointers.get(gesture.pointerIds[1]);
+        if (!first || !second) return;
+        const midpoint = midpointBetween(first, second);
+        design.scale = clampScale(gesture.startScale * distanceBetween(first, second) / gesture.startDistance);
+        design.posX = Math.max(0, Math.min(100, gesture.startPosX + ((midpoint.x - gesture.startMidpoint.x) / rect.width) * (10000 / printArea.w)));
+        design.posY = Math.max(0, Math.min(100, gesture.startPosY + ((midpoint.y - gesture.startMidpoint.y) / rect.height) * (10000 / printArea.h)));
+      } else if (gesture.mode === "resize") {
+        const currentDistance = Math.max(1, Math.hypot(e.clientX - gesture.anchorX, e.clientY - gesture.anchorY));
+        design.scale = clampScale(gesture.startScale * currentDistance / gesture.startDistance);
+      } else {
+        design.posX = Math.max(0, Math.min(100, gesture.startPosX + ((e.clientX - gesture.startX) / rect.width) * (10000 / printArea.w)));
+        design.posY = Math.max(0, Math.min(100, gesture.startPosY + ((e.clientY - gesture.startY) / rect.height) * (10000 / printArea.h)));
+      }
+
+      syncDesignControls(design);
+      updatePreviewLayer(gesture.index, design);
+    });
+
+    function finishPointer(e) {
+      activePointers.delete(e.pointerId);
+      if (!gesture) return;
+      if (gesture.mode === "pinch" && gesture.pointerIds.includes(e.pointerId)) {
+        const remaining = gesture.pointerIds.find((id) => activePointers.has(id));
+        const design = state.designs[gesture.index];
+        if (remaining !== undefined && design) {
+          beginMoveGesture(remaining, activePointers.get(remaining), design, els.previewCanvas.getBoundingClientRect());
+        } else {
+          gesture = null;
+        }
+      } else if (gesture.pointerId === e.pointerId || activePointers.size === 0) {
+        gesture = null;
+      }
+    }
+
+    els.previewCanvas.addEventListener("pointerup", finishPointer);
+    els.previewCanvas.addEventListener("pointercancel", finishPointer);
+
+    function changeActiveDesignScale(amount) {
+      const design = getActiveDesign();
+      if (!design) return;
+      design.scale = clampScale(design.scale + amount);
+      syncDesignControls(design);
+      updatePreviewLayer(state.activeDesignIndex, design);
+    }
+
+    els.zoomInBtn.addEventListener("click", () => changeActiveDesignScale(10));
+    els.zoomOutBtn.addEventListener("click", () => changeActiveDesignScale(-10));
+
+    els.orderBtn.addEventListener("click", () => {
+      const p = state.product;
+      const opsiIdx = (p.opsi || []).map(() => 0);
+
+      let teks;
+      if (language === "en") {
+        const variant = labelVarian(p, opsiIdx, state.toneKey, p.ukuran ? p.ukuran[0] : null);
+        const lines = [
+          `Hello KTUBA, I'd like to order custom ${translateValue(p.nama)} with my own design.`,
+          "",
+          `Quantity: ${state.qty} ${translateValue(p.unit)}`,
+        ];
+        if (variant.length) lines.push(`Specifications: ${variant.join(" · ")}`);
+        if (state.designs.length) lines.push(`Custom designs: ${state.designs.map((item) => item.name).join(", ")}`);
+        lines.push(`Estimated price: ${rp(hitungTotal(p, opsiIdx, state.qty))}`, "", "Please confirm the final total and turnaround time. Thank you.");
+        teks = lines.join("\n");
+      } else {
+        const baris = [
+          `Halo KTUBA, saya mau pesan ${p.nama} custom dengan desain sendiri.`,
+          "",
+          `Jumlah: ${state.qty} ${p.unit}`,
+        ];
+        const varian = labelVarian(p, opsiIdx, state.toneKey, p.ukuran ? p.ukuran[0] : null);
+        if (varian.length) baris.push(`Spesifikasi: ${varian.join(" · ")}`);
+        if (state.designs.length) baris.push(`Desain custom: ${state.designs.map((item) => item.name).join(", ")}`);
+        baris.push(`Estimasi harga: ${rp(hitungTotal(p, opsiIdx, state.qty))}`, "", "Mohon konfirmasi total akhir dan waktu pengerjaannya. Terima kasih.");
+        teks = baris.join("\n");
+      }
+
       bukaWhatsApp(teks);
     });
 
-    paintProduk();
-    paintWarna();
-    paintOpsi();
-    paint();
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes < 1024) return bytes + " B";
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+      return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+    }
+
+    renderProductSelector();
+    renderWarna();
+    renderDesignList();
+    renderActiveDesignSelect();
+    renderDesignControls();
+    renderPreview();
+    updatePrice();
+    updateQtyInput();
   })();
 
   const galeriGrid = qs("#galeriGrid");

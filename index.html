@@ -30,7 +30,7 @@
 
       <nav class="nav" aria-label="Navigasi utama">
         <a href="#layanan">Layanan</a>
-        <a href="#harga">Harga</a>
+        <a href="#harga">Custom</a>
         <a href="#proses">Proses</a>
         <a href="#galeri">Hasil</a>
         <a href="#faq">FAQ</a>
@@ -55,7 +55,7 @@
     <div class="mobile-nav" id="mobileNav" hidden>
       <nav aria-label="Navigasi seluler">
         <a href="#layanan"><span>01</span>Layanan</a>
-        <a href="#harga"><span>02</span>Harga</a>
+        <a href="#harga"><span>02</span>Custom</a>
         <a href="#proses"><span>03</span>Proses</a>
         <a href="#galeri"><span>04</span>Hasil</a>
         <a href="#faq"><span>05</span>FAQ</a>
@@ -90,7 +90,7 @@
               Lihat layanan
               <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
             </a>
-            <a class="btn btn--lg btn--ghost" href="#harga">Hitung harga</a>
+            <a class="btn btn--lg btn--ghost" href="#harga">Coba desain</a>
           </div>
 
           <ul class="hero-meta">
@@ -120,7 +120,7 @@
         <div class="sec-head">
           <div>
             <p class="eyebrow">Layanan KTUBA</p>
-            <h2 class="sec-title" id="catalogTitle">Tiga belas cara<br>membuat idemu <em>benda.</em></h2>
+            <h2 class="sec-title" id="catalogTitle">13 cara membuat idemu<br>menjadi <em>sebuah benda.</em></h2>
           </div>
           <p class="sec-aside">
             Pilih produknya, lihat estimasi harganya, lalu pesan langsung ke WhatsApp.
@@ -138,58 +138,117 @@
         </p>
       </section>
 
-      <section class="konfig" id="harga" aria-labelledby="konfigTitle">
-        <div class="konfig-inner">
-          <div class="konfig-controls">
-            <p class="eyebrow eyebrow--light">Hitung cepat</p>
-            <h2 class="sec-title sec-title--light" id="konfigTitle">Berapa totalnya?</h2>
-            <p class="konfig-lede">
-              Ubah bahan, warna, dan jumlah — harga serta ilustrasinya ikut berubah.
+      <section class="designer" id="harga" aria-labelledby="designerTitle">
+        <div class="designer-inner">
+          <div class="designer-header">
+            <p class="eyebrow eyebrow--light">Desain Sendiri</p>
+            <h2 class="sec-title sec-title--light" id="designerTitle">Buat Produk Custom<br>dengan <em>Desainmu.</em></h2>
+            <p class="designer-lede">
+              Pilih produk, unggah desain, atur posisinya — lihat pratinjau langsung dan pesan.
             </p>
-
-            <div class="field">
-              <span class="field-label">Produk</span>
-              <div class="chip-row" id="konfigProduk"></div>
-            </div>
-
-            <div class="field">
-              <span class="field-label">Warna</span>
-              <div class="swatch-row" id="konfigWarna"></div>
-              <small class="color-note">Catatan: warna yang dipilih hanya mengubah ilustrasi pratinjau, bukan warna desain atau cetakan akhir.</small>
-            </div>
-
-            <div id="konfigOpsi"></div>
-
-            <div class="field" id="konfigUkuranField" hidden>
-              <span class="field-label">Ukuran</span>
-              <div class="chip-row" id="konfigUkuran"></div>
-            </div>
-
-            <div class="field">
-              <span class="field-label">Jumlah</span>
-              <div class="stepper" id="konfigQty">
-                <button type="button" data-step="-1" aria-label="Kurangi jumlah">−</button>
-                <input id="konfigQtyInput" type="number" value="1" min="1" step="1" inputmode="numeric" aria-label="Jumlah pesanan">
-                <button type="button" data-step="1" aria-label="Tambah jumlah">+</button>
-              </div>
-            </div>
           </div>
 
-          <div class="konfig-preview">
-            <div class="preview-stage">
-              <div class="preview-media" id="konfigMedia"></div>
-              <span class="preview-badge" id="konfigBadge">Estimasi</span>
-            </div>
-
-            <div class="preview-price">
-              <div>
-                <span class="price-label">Perkiraan total</span>
-                <strong class="price-value" id="konfigTotal">Rp 0</strong>
-                <span class="price-detail" id="konfigDetail"></span>
+          <div class="designer-grid">
+            <div class="designer-sidebar">
+              <div class="designer-panel">
+                <h3 class="panel-title">1. Pilih Produk</h3>
+                <div class="product-selector" id="designerProductSelector" role="listbox" aria-label="Pilih produk"></div>
               </div>
-              <button class="btn btn--lg btn--accent btn--block" id="konfigOrder" type="button">
+
+              <div class="designer-panel">
+                <h3 class="panel-title">2. Warna Produk</h3>
+                <div class="swatch-row" id="designerWarna"></div>
+                <small class="color-note">Warna hanya mengubah pratinjau produk, bukan cetakan desain.</small>
+              </div>
+
+              <div class="designer-panel">
+                <h3 class="panel-title">3. Unggah Desain</h3>
+                <div class="upload-zone" id="uploadZone" role="button" tabindex="0" aria-label="Unggah file desain">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <p>Seret file ke sini atau <span class="upload-btn">klik untuk pilih</span></p>
+                  <small>PNG, JPG, SVG · Maks 10MB per file · Bisa multiple</small>
+                  <input type="file" id="designUpload" accept="image/*,.svg" multiple hidden aria-label="Pilih file desain">
+                </div>
+                <div class="design-list" id="designList" aria-label="Daftar desain yang diunggah"></div>
+              </div>
+
+              <div class="designer-panel">
+                <h3 class="panel-title">4. Atur Desain</h3>
+                <div class="design-controls" id="designControls" hidden>
+                  <div class="field">
+                    <span class="field-label">Desain Aktif</span>
+                    <select id="activeDesignSelect" aria-label="Pilih desain yang diedit"></select>
+                  </div>
+                  <div class="field">
+                    <span class="field-label">Hapus Latar Polos</span>
+                    <label class="toggle">
+                      <input type="checkbox" id="removeBgToggle" aria-label="Hapus warna latar polos">
+                      <span class="toggle-slider"></span>
+                    </label>
+                    <small class="toggle-note">Hapus warna latar polos langsung di browser. Hasil terbaik untuk latar putih.</small>
+                  </div>
+                  <div class="field">
+                    <span class="field-label">Skala</span>
+                    <input type="range" id="designScale" min="10" max="400" value="100" aria-label="Skala desain">
+                    <output id="designScaleValue">100%</output>
+                  </div>
+                  <div class="field">
+                    <span class="field-label">Rotasi</span>
+                    <input type="range" id="designRotate" min="-180" max="180" value="0" aria-label="Rotasi desain">
+                    <output id="designRotateValue">0°</output>
+                  </div>
+                  <div class="field">
+                    <span class="field-label">Posisi X</span>
+                    <input type="range" id="designPosX" min="0" max="100" value="50" aria-label="Posisi horizontal">
+                    <output id="designPosXValue">50%</output>
+                  </div>
+                  <div class="field">
+                    <span class="field-label">Posisi Y</span>
+                    <input type="range" id="designPosY" min="0" max="100" value="50" aria-label="Posisi vertikal">
+                    <output id="designPosYValue">50%</output>
+                  </div>
+                  <button class="btn btn--block btn--ghost" id="resetDesignBtn" type="button">Reset Posisi</button>
+                </div>
+                <p class="empty-state" id="noDesignState">Belum ada desain. Unggah file di atas untuk memulai.</p>
+              </div>
+
+              <div class="designer-panel">
+                <h3 class="panel-title">5. Jumlah & Harga</h3>
+                <div class="field">
+                  <span class="field-label">Jumlah</span>
+                  <div class="stepper" id="designerQty">
+                    <button type="button" data-step="-1" aria-label="Kurangi jumlah">−</button>
+                    <input id="designerQtyInput" type="number" value="1" min="1" step="1" inputmode="numeric" aria-label="Jumlah pesanan">
+                    <button type="button" data-step="1" aria-label="Tambah jumlah">+</button>
+                  </div>
+                </div>
+                <div class="designer-price-summary">
+                  <div class="price-row"><span>Harga satuan</span><strong id="designerUnitPrice">Rp 0</strong></div>
+                  <div class="price-row"><span>Subtotal</span><strong id="designerSubtotal">Rp 0</strong></div>
+                  <div class="price-row discount" id="designerDiscountRow" hidden><span>Diskon</span><strong id="designerDiscount">-Rp 0</strong></div>
+                  <div class="price-row total"><span>Total</span><strong id="designerTotal">Rp 0</strong></div>
+                </div>
+              </div>
+
+              <button class="btn btn--lg btn--accent btn--block" id="designerOrder" type="button">
                 Pesan via WhatsApp
               </button>
+              <p class="designer-note">Pratinjau ini simulasi. Kirim file desain asli lewat WhatsApp saat memesan.</p>
+            </div>
+
+            <div class="designer-preview">
+              <div class="preview-stage">
+                <div class="preview-canvas" id="previewCanvas"></div>
+                <div class="preview-overlay" id="previewOverlay" aria-hidden="true"></div>
+                <span class="preview-badge" id="previewBadge">Pratinjau</span>
+                <button class="preview-upload" id="previewUploadBtn" type="button">+ Tambah desain</button>
+                <div class="preview-actions" aria-label="Atur ukuran desain">
+                  <button class="preview-size-btn" id="zoomOutBtn" type="button" aria-label="Perkecil desain" title="Perkecil desain">−</button>
+                  <output class="preview-scale" id="previewScaleDisplay">—</output>
+                  <button class="preview-size-btn" id="zoomInBtn" type="button" aria-label="Besarkan desain" title="Besarkan desain">+</button>
+                </div>
+              </div>
+              <p class="preview-gesture-hint">Geser desain untuk memindahkan. Cubit dengan dua jari di HP, atau tarik titik sudut di komputer untuk mengubah ukuran.</p>
             </div>
           </div>
         </div>
